@@ -8,6 +8,7 @@ import { ChevronLeft, Package, Truck, CheckCircle2, XCircle, Clock, Loader2, Map
 import { formatPrice } from '@/lib/utils/format-price'
 import { getProductPlaceholder } from '@/lib/utils/placeholder-images'
 import TrackingInfo from '@/components/order/tracking-info'
+import OrderReviewForm from '@/components/plugins/reviews/OrderReviewForm'
 import type { Order, OrderItem } from '@/types'
 
 // Status badge component
@@ -285,6 +286,19 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
                     icon={CreditCard}
                   />
                 </div>
+
+                {/* Customer Reviews */}
+                <OrderReviewForm
+                  orderId={order.id}
+                  orderFulfillmentStatus={order.fulfillment_status}
+                  items={order.items.map((it) => ({
+                    id: it.id,
+                    product_id: it.product_id,
+                    product_title: it.product_title,
+                    variant_title: it.variant_title ?? undefined,
+                    thumbnail: it.thumbnail,
+                  }))}
+                />
 
                 {/* Shipping & Tracking */}
                 <div className="border rounded-sm p-5">
