@@ -19,6 +19,7 @@ import {
   useUpdateReview,
 } from '@amboras-dev/reviews'
 import StarRating from './StarRating'
+import { getMedusaClient } from '@/lib/medusa-client'
 
 interface OrderItemSummary {
   id: string
@@ -314,11 +315,6 @@ function ReviewForm({
 
     setUploading(true)
     try {
-      const backendUrl =
-        process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || 'http://localhost:9000'
-      const publishableKey = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ''
-      const storeId = process.env.NEXT_PUBLIC_STORE_ID
-
       // Build the batch payload: { files: [{ filename, mimeType, content }] }
       const payloadFiles = await Promise.all(
         files.map(async (file) => ({
@@ -328,24 +324,18 @@ function ReviewForm({
         })),
       )
 
-      const res = await fetch(`${backendUrl}/store/reviews/upload`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-publishable-api-key': publishableKey,
-          ...(storeId ? { 'X-Store-Environment-ID': storeId } : {}),
+      // Use the Medusa SDK's client so auth token, publishable key, and store
+      // environment headers are all attached automatically.
+      const client = getMedusaClient()
+      const json = await client.client.fetch<{ urls: string[] }>(
+        '/store/reviews/upload',
+        {
+          method: 'POST',
+          body: { files: payloadFiles },
         },
-        body: JSON.stringify({ files: payloadFiles }),
-      })
+      )
 
-      if (!res.ok) {
-        const errJson = await res.json().catch(() => ({}))
-        throw new Error(errJson.message || `Upload failed (${res.status})`)
-      }
-
-      const json = await res.json()
-      const urls: string[] = json.urls || []
+      const urls: string[] = json?.urls || []
 
       if (!Array.isArray(urls) || urls.length !== files.length) {
         throw new Error('Upload response did not include expected URLs')
