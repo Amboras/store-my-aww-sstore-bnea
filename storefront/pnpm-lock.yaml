@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@amboras-dev/reviews':
+        specifier: 0.4.0
+        version: 0.4.0(@tanstack/react-query@5.99.0(react@19.2.5))(react@19.2.5)
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.72.1(react@19.2.5))
@@ -90,6 +93,12 @@ packages:
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
+
+  '@amboras-dev/reviews@0.4.0':
+    resolution: {integrity: sha512-wO4pXgU8O+uUqa6KaucqjpFSJjYcGzgcOAPwpKDqCmQINGSMcl+r2JT/7wcMji/ANW5DSOwAfsuNDcotSQGOCg==}
+    peerDependencies:
+      '@tanstack/react-query': '>=5'
+      react: '>=18'
 
   '@emnapi/core@1.9.2':
     resolution: {integrity: sha512-UC+ZhH3XtczQYfOlu3lNEkdW/p4dsJ1r/bP7H8+rhao3TTTMO1ATq/4DdIi23XuGoFY+Cz0JmCbdVl0hz9jZcA==}
@@ -2223,6 +2232,11 @@ packages:
 snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
+
+  '@amboras-dev/reviews@0.4.0(@tanstack/react-query@5.99.0(react@19.2.5))(react@19.2.5)':
+    dependencies:
+      '@tanstack/react-query': 5.99.0(react@19.2.5)
+      react: 19.2.5
 
   '@emnapi/core@1.9.2':
     dependencies:
