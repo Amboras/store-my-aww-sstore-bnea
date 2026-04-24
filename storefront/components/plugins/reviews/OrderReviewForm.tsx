@@ -1,9 +1,18 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image'
 import { toast } from 'sonner'
-import { Loader2, Pencil, Check, Gift, Copy } from 'lucide-react'
+import {
+  Loader2,
+  Pencil,
+  Check,
+  Gift,
+  Copy,
+  ImagePlus,
+  X,
+  Play,
+} from 'lucide-react'
 import {
   useMyReviews,
   useCreateReview,
@@ -23,6 +32,18 @@ interface Props {
   items: OrderItemSummary[]
   orderId: string
   orderFulfillmentStatus?: string
+}
+
+// Media upload constraints
+const MAX_FILES = 5
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024 // 5MB
+const MAX_VIDEO_SIZE = 50 * 1024 * 1024 // 50MB
+const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif']
+const ACCEPTED_VIDEO_TYPES = ['video/mp4', 'video/webm', 'video/quicktime']
+
+interface MediaItem {
+  url: string
+  type: 'image' | 'video'
 }
 
 export default function OrderReviewForm({
@@ -216,6 +237,7 @@ interface ReviewFormProps {
     rating: number
     title: string | null
     content: string | null
+    media?: MediaItem[] | null
   } | null
   onCancel: () => void
   onSuccess: (discountCode: string | null) => void
@@ -231,11 +253,124 @@ function ReviewForm({
   const [rating, setRating] = useState(existingReview?.rating || 0)
   const [title, setTitle] = useState(existingReview?.title || '')
   const [content, setContent] = useState(existingReview?.content || '')
+  const [media, setMedia] = useState<MediaItem[]>(existingReview?.media || [])
+  const [uploading, setUploading] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const createReview = useCreateReview()
   const updateReview = useUpdateReview()
 
-  const isPending = createReview.isPending || updateReview.isPending
+  const isPending = createReview.isPending || updateReview.isPending || uploading
+
+  const fileToBase64 = (file: File): Promise<string> =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = () => {
+        const result = reader.result as string
+        // Strip data URL prefix (e.g. "data:image/jpeg;base64,")
+        const base64 = result.split(',')[1] || ''
+        resolve(base64)
+      }
+      reader.onerror = () => reject(new Error('Failed to read file'))
+      reader.readAsDataURL(file)
+    })
+
+  const validateFile = (file: File): string | null => {
+    const isImage = ACCEPTED_IMAGE_TYPES.includes(file.type)
+    const isVideo = ACCEPTED_VIDEO_TYPES.includes(file.type)
+
+    if (!isImage && !isVideo) {
+      return `${file.name}: unsupported file type`
+    }
+    if (isImage && file.size > MAX_IMAGE_SIZE) {
+      return `${file.name}: image must be under 5MB`
+    }
+    if (isVideo && file.size > MAX_VIDEO_SIZE) {
+      return `${file.name}: video must be under 50MB`
+    }
+    return null
+  }
+
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || [])
+    if (files.length === 0) return
+
+    // Reset so same file can be re-picked after removal
+    if (fileInputRef.current) fileInputRef.current.value = ''
+
+    if (media.length + files.length > MAX_FILES) {
+      toast.error(`You can attach up to ${MAX_FILES} files total`)
+      return
+    }
+
+    // Validate all files upfront
+    for (const file of files) {
+      const err = validateFile(file)
+      if (err) {
+        toast.error(err)
+        return
+      }
+    }
+
+    setUploading(true)
+    try {
+      const backendUrl =
+        process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || 'http://localhost:9000'
+      const publishableKey = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ''
+      const storeId = process.env.NEXT_PUBLIC_STORE_ID
+
+      const uploaded: MediaItem[] = []
+
+      for (const file of files) {
+        const base64 = await fileToBase64(file)
+        const type: 'image' | 'video' = ACCEPTED_IMAGE_TYPES.includes(file.type)
+          ? 'image'
+          : 'video'
+
+        const res = await fetch(`${backendUrl}/store/reviews/upload`, {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-publishable-api-key': publishableKey,
+            ...(storeId ? { 'X-Store-Environment-ID': storeId } : {}),
+          },
+          body: JSON.stringify({
+            filename: file.name,
+            mime_type: file.type,
+            content: base64,
+          }),
+        })
+
+        if (!res.ok) {
+          const errJson = await res.json().catch(() => ({}))
+          throw new Error(errJson.message || `Failed to upload ${file.name}`)
+        }
+
+        const json = await res.json()
+        const url = json.url || json.file?.url || json.media?.url
+        if (!url) {
+          throw new Error(`No URL returned for ${file.name}`)
+        }
+
+        uploaded.push({ url, type })
+      }
+
+      setMedia((prev) => [...prev, ...uploaded])
+      toast.success(
+        `${uploaded.length} ${uploaded.length === 1 ? 'file' : 'files'} attached`,
+      )
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Upload failed'
+      toast.error(message)
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  const removeMedia = (index: number) => {
+    setMedia((prev) => prev.filter((_, i) => i !== index))
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -252,6 +387,7 @@ function ReviewForm({
           rating,
           title: title.trim() || undefined,
           content: content.trim() || undefined,
+          media: media.length > 0 ? media : undefined,
         })
         toast.success('Review updated — awaiting re-approval')
         onSuccess(null)
@@ -262,14 +398,18 @@ function ReviewForm({
           rating,
           title: title.trim() || undefined,
           content: content.trim() || undefined,
+          media: media.length > 0 ? media : undefined,
         })
         toast.success('Thanks for your review!')
         onSuccess(result.discount_code || null)
       }
-    } catch (err: any) {
-      toast.error(err?.message || 'Failed to submit review')
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Failed to submit review'
+      toast.error(message)
     }
   }
+
+  const canAddMore = media.length < MAX_FILES
 
   return (
     <form onSubmit={handleSubmit} className="mt-4 space-y-3 border-t pt-4">
@@ -313,6 +453,94 @@ function ReviewForm({
           placeholder="What did you like or dislike? How was the fit and quality?"
           className="w-full px-3 py-2 text-sm border rounded-sm bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-none"
         />
+      </div>
+
+      {/* Media upload */}
+      <div>
+        <label className="block text-xs font-medium mb-1.5">
+          Photos & videos (optional)
+        </label>
+        <p className="text-xs text-muted-foreground mb-2">
+          Up to {MAX_FILES} files · Images under 5MB · Videos under 50MB
+        </p>
+
+        {media.length > 0 && (
+          <div className="grid grid-cols-4 sm:grid-cols-5 gap-2 mb-2">
+            {media.map((item, idx) => (
+              <div
+                key={idx}
+                className="relative aspect-square bg-muted rounded-sm overflow-hidden group border"
+              >
+                {item.type === 'image' ? (
+                  <Image
+                    src={item.url}
+                    alt={`Upload ${idx + 1}`}
+                    fill
+                    sizes="120px"
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="relative w-full h-full bg-black">
+                    <video
+                      src={item.url}
+                      className="w-full h-full object-cover"
+                      muted
+                      playsInline
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="bg-white/90 rounded-full p-1.5">
+                        <Play className="h-3 w-3 text-foreground fill-foreground" />
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <button
+                  type="button"
+                  onClick={() => removeMedia(idx)}
+                  disabled={isPending}
+                  aria-label="Remove"
+                  className="absolute top-1 right-1 w-5 h-5 rounded-full bg-foreground/80 text-background flex items-center justify-center opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity disabled:cursor-not-allowed"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {canAddMore && (
+          <>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept={[...ACCEPTED_IMAGE_TYPES, ...ACCEPTED_VIDEO_TYPES].join(',')}
+              multiple
+              onChange={handleFileSelect}
+              disabled={isPending}
+              className="hidden"
+              id={`media-${productId}`}
+            />
+            <label
+              htmlFor={`media-${productId}`}
+              className={`inline-flex items-center gap-2 px-3 py-2 text-xs font-medium border border-dashed rounded-sm transition-colors ${
+                isPending
+                  ? 'opacity-50 cursor-not-allowed'
+                  : 'hover:bg-muted cursor-pointer'
+              }`}
+            >
+              {uploading ? (
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              ) : (
+                <ImagePlus className="h-3.5 w-3.5" />
+              )}
+              {uploading
+                ? 'Uploading…'
+                : media.length > 0
+                  ? `Add more (${media.length}/${MAX_FILES})`
+                  : 'Add photos or videos'}
+            </label>
+          </>
+        )}
       </div>
 
       <div className="flex items-center gap-2 pt-1">
