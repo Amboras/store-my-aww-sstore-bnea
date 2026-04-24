@@ -319,42 +319,42 @@ function ReviewForm({
       const publishableKey = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ''
       const storeId = process.env.NEXT_PUBLIC_STORE_ID
 
-      const uploaded: MediaItem[] = []
+      // Build the batch payload: { files: [{ filename, mimeType, content }] }
+      const payloadFiles = await Promise.all(
+        files.map(async (file) => ({
+          filename: file.name,
+          mimeType: file.type,
+          content: await fileToBase64(file),
+        })),
+      )
 
-      for (const file of files) {
-        const base64 = await fileToBase64(file)
-        const type: 'image' | 'video' = ACCEPTED_IMAGE_TYPES.includes(file.type)
-          ? 'image'
-          : 'video'
+      const res = await fetch(`${backendUrl}/store/reviews/upload`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-publishable-api-key': publishableKey,
+          ...(storeId ? { 'X-Store-Environment-ID': storeId } : {}),
+        },
+        body: JSON.stringify({ files: payloadFiles }),
+      })
 
-        const res = await fetch(`${backendUrl}/store/reviews/upload`, {
-          method: 'POST',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-publishable-api-key': publishableKey,
-            ...(storeId ? { 'X-Store-Environment-ID': storeId } : {}),
-          },
-          body: JSON.stringify({
-            filename: file.name,
-            mime_type: file.type,
-            content: base64,
-          }),
-        })
-
-        if (!res.ok) {
-          const errJson = await res.json().catch(() => ({}))
-          throw new Error(errJson.message || `Failed to upload ${file.name}`)
-        }
-
-        const json = await res.json()
-        const url = json.url || json.file?.url || json.media?.url
-        if (!url) {
-          throw new Error(`No URL returned for ${file.name}`)
-        }
-
-        uploaded.push({ url, type })
+      if (!res.ok) {
+        const errJson = await res.json().catch(() => ({}))
+        throw new Error(errJson.message || `Upload failed (${res.status})`)
       }
+
+      const json = await res.json()
+      const urls: string[] = json.urls || []
+
+      if (!Array.isArray(urls) || urls.length !== files.length) {
+        throw new Error('Upload response did not include expected URLs')
+      }
+
+      const uploaded: MediaItem[] = files.map((file, i) => ({
+        url: urls[i],
+        type: ACCEPTED_IMAGE_TYPES.includes(file.type) ? 'image' : 'video',
+      }))
 
       setMedia((prev) => [...prev, ...uploaded])
       toast.success(
