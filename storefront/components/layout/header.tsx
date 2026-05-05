@@ -114,10 +114,10 @@ export default function Header() {
             <div className="flex items-center gap-1">
               <Link
                 href="/search"
-                className="p-2.5 hover:opacity-70 transition-opacity"
+                className="p-2.5 hover:opacity-70 transition-opacity hidden sm:block"
                 aria-label="Search"
               >
-                <Search className="h-5 w-5" />
+                <Search className="h-5 w-5" strokeWidth={1.5} />
               </Link>
               <Link
                 href={isLoggedIn ? '/account' : '/auth/login'}
