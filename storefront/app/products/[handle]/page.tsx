@@ -119,15 +119,18 @@ export default async function ProductPage({
 
   return (
     <>
+      {/* Urgency Sale Banner */}
+      {onSale && <SaleBanner endsInHours={36} label="Drop ending soon" />}
+
       {/* Breadcrumbs */}
       <div className="border-b">
         <div className="container-custom py-3">
-          <nav className="flex items-center gap-2 text-xs text-muted-foreground">
+          <nav className="flex items-center gap-2 text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
             <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
             <ChevronRight className="h-3 w-3" />
             <Link href="/products" className="hover:text-foreground transition-colors">Shop</Link>
             <ChevronRight className="h-3 w-3" />
-            <span className="text-foreground">{product.title}</span>
+            <span className="text-foreground truncate max-w-[200px] sm:max-w-none normal-case tracking-normal">{product.title}</span>
           </nav>
         </div>
       </div>
