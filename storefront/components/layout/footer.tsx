@@ -101,8 +101,8 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Store. All rights reserved.
+          <p className="text-[11px] text-muted-foreground uppercase tracking-[0.16em]">
+            &copy; {new Date().getFullYear()} Essentials. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <button
