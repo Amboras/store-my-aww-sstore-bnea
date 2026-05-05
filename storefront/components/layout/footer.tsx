@@ -58,7 +58,7 @@ export default function Footer() {
 
           {/* Shop Links */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-widest mb-4">Shop</h3>
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.22em] mb-4">Shop</h3>
             <ul className="space-y-3">
               {footerLinks.shop.map((link) => (
                 <li key={link.href}>
