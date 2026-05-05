@@ -124,14 +124,14 @@ export default function Header() {
                 className="p-2.5 hover:opacity-70 transition-opacity hidden sm:block"
                 aria-label={isLoggedIn ? 'Account' : 'Sign in'}
               >
-                {isLoggedIn ? <User className="h-5 w-5" /> : <LogIn className="h-5 w-5" />}
+                {isLoggedIn ? <User className="h-5 w-5" strokeWidth={1.5} /> : <LogIn className="h-5 w-5" strokeWidth={1.5} />}
               </Link>
               <button
                 onClick={() => setIsCartOpen(true)}
                 className="relative p-2.5 hover:opacity-70 transition-opacity"
                 aria-label="Shopping bag"
               >
-                <ShoppingBag className="h-5 w-5" />
+                <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
                 {itemCount > 0 && (
                   <span className="absolute top-0.5 right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-foreground text-[10px] font-bold text-background">
                     {itemCount}
