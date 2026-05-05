@@ -30,10 +30,10 @@ const body = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Store — Modern Commerce',
-    template: '%s | Store',
+    default: 'Essentials — Heavyweight Cotton, Worn Daily',
+    template: '%s | Essentials',
   },
-  description: 'Discover curated products crafted with care. A modern ecommerce experience.',
+  description: 'Heavyweight cotton, considered fits, quiet colour. The wardrobe edited to its essentials.',
 }
 
 export default function RootLayout({
