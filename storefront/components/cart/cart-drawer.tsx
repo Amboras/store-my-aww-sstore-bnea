@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useCallback } from 'react'
 import { useCart } from '@/hooks/use-cart'
+import { useProducts } from '@/hooks/use-products'
 import Image from 'next/image'
 import Link from 'next/link'
-import { X, ShoppingBag, Minus, Plus, Trash2 } from 'lucide-react'
+import { X, ShoppingBag, Minus, Plus, Trash2, Plus as PlusSmall, Check } from 'lucide-react'
 import { getProductImage } from '@/lib/utils/placeholder-images'
 import { formatPrice } from '@/lib/utils/format-price'
 import { PromoCodeInput } from '@/components/checkout/promo-code-input'
@@ -15,24 +16,26 @@ interface CartDrawerProps {
   onClose: () => void
 }
 
+// Free shipping threshold in minor units (paise for INR). ₹999 = 99,900 paise.
+const FREE_SHIPPING_THRESHOLD = 99900
+
 export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const {
-    cart, removeItem, updateItem, itemCount, subtotal, isLoading,
+    cart, removeItem, updateItem, addItem, isAddingItem, itemCount, subtotal, isLoading,
     appliedPromoCodes, discountTotal, applyPromoCode, removePromoCode,
     isApplyingPromo, isRemovingPromo,
   } = useCart()
 
+  // Suggested products for the in-cart upsell
+  const { data: catalog } = useProducts({ limit: 12 })
+
   const drawerRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
-  // Focus the close button when drawer opens
   useEffect(() => {
-    if (isOpen) {
-      closeButtonRef.current?.focus()
-    }
+    if (isOpen) closeButtonRef.current?.focus()
   }, [isOpen])
 
-  // Close on Escape key
   useEffect(() => {
     if (!isOpen) return
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -42,18 +45,14 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [isOpen, onClose])
 
-  // Trap focus inside drawer
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key !== 'Tab' || !drawerRef.current) return
-
     const focusable = drawerRef.current.querySelectorAll<HTMLElement>(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     )
     if (focusable.length === 0) return
-
     const first = focusable[0]
     const last = focusable[focusable.length - 1]
-
     if (e.shiftKey && document.activeElement === first) {
       e.preventDefault()
       last.focus()
@@ -65,8 +64,21 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
 
   if (!isOpen) return null
 
-  const currencyCode = cart?.currency_code || cart?.region?.currency_code || 'usd'
+  const currencyCode = cart?.currency_code || cart?.region?.currency_code || 'inr'
   const formattedSubtotal = formatPrice(subtotal || 0, currencyCode)
+
+  // Free shipping progress
+  const remainingForFreeShip = Math.max(0, FREE_SHIPPING_THRESHOLD - (subtotal || 0))
+  const progressPct = Math.min(100, Math.round(((subtotal || 0) / FREE_SHIPPING_THRESHOLD) * 100))
+  const freeShipUnlocked = remainingForFreeShip === 0 && (subtotal || 0) > 0
+
+  // Build the upsell list — products NOT already in the cart
+  const inCartIds = new Set((cart?.items || []).map((i: CartLineItem) => i.product_id).filter(Boolean))
+  const upsellCandidates = (catalog || []).filter((p: any) => !inCartIds.has(p.id)).slice(0, 3)
+
+  const handleQuickAdd = (variantId: string) => {
+    addItem({ variantId, quantity: 1 })
+  }
 
   return (
     <>
@@ -87,8 +99,8 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b px-6 py-5">
-          <h2 className="font-heading text-xl font-semibold">
-            Bag ({itemCount})
+          <h2 className="font-heading text-base font-semibold uppercase tracking-[0.16em]">
+            Bag <span className="ml-1 text-muted-foreground tabular">({itemCount})</span>
           </h2>
           <button
             ref={closeButtonRef}
@@ -99,6 +111,32 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             <X className="h-5 w-5" />
           </button>
         </div>
+
+        {/* Free shipping progress */}
+        {(cart?.items?.length || 0) > 0 && (
+          <div className="border-b px-6 py-4 bg-muted/30">
+            <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.16em] mb-2">
+              {freeShipUnlocked ? (
+                <span className="font-semibold inline-flex items-center gap-1.5">
+                  <Check className="h-3.5 w-3.5" />
+                  Free shipping unlocked
+                </span>
+              ) : (
+                <span className="text-muted-foreground">
+                  <span className="font-semibold text-foreground">{formatPrice(remainingForFreeShip, currencyCode)}</span>
+                  <span className="ml-1">to free shipping</span>
+                </span>
+              )}
+              <span className="tabular text-muted-foreground">{progressPct}%</span>
+            </div>
+            <div className="h-1 w-full bg-border overflow-hidden rounded-full">
+              <div
+                className="h-full bg-foreground transition-all duration-500 rounded-full"
+                style={{ width: `${progressPct}%` }}
+              />
+            </div>
+          </div>
+        )}
 
         {/* Cart Items */}
         <div className="flex-1 overflow-y-auto px-6 py-4">
@@ -117,11 +155,11 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             </div>
           ) : !cart?.items || cart.items.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center">
-              <ShoppingBag className="h-12 w-12 text-muted-foreground/40" strokeWidth={1.5} />
+              <ShoppingBag className="h-12 w-12 text-muted-foreground/40" strokeWidth={1.25} />
               <p className="mt-4 text-muted-foreground">Your bag is empty</p>
               <button
                 onClick={onClose}
-                className="mt-6 text-sm font-semibold uppercase tracking-wide link-underline"
+                className="mt-6 text-[11px] font-semibold uppercase tracking-[0.2em] link-underline pb-0.5"
               >
                 Continue Shopping
               </button>
@@ -135,11 +173,12 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                 return (
                   <div key={item.id} className="flex gap-4">
                     {/* Product Image */}
-                    <div className="relative h-28 w-22 flex-shrink-0 overflow-hidden rounded bg-muted">
+                    <div className="relative h-28 w-22 flex-shrink-0 overflow-hidden bg-muted">
                       <Image
                         src={getProductImage(item.thumbnail, item.product_id || item.id)}
                         alt={item.title}
                         fill
+                        sizes="96px"
                         className="object-cover"
                       />
                     </div>
@@ -164,7 +203,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
 
                       <div className="mt-auto pt-2 flex items-center justify-between">
                         {/* Quantity Selector */}
-                        <div className="flex items-center border rounded-md">
+                        <div className="flex items-center border">
                           <button
                             onClick={() => updateItem({ lineId: item.id, quantity: Math.max(1, item.quantity - 1) })}
                             className="p-2.5 hover:bg-muted transition-colors"
@@ -172,7 +211,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                           >
                             <Minus className="h-3.5 w-3.5" />
                           </button>
-                          <span className="px-3 text-sm font-medium tabular-nums">{item.quantity}</span>
+                          <span className="px-3 text-sm font-medium tabular">{item.quantity}</span>
                           <button
                             onClick={() => updateItem({ lineId: item.id, quantity: item.quantity + 1 })}
                             className="p-2.5 hover:bg-muted transition-colors"
@@ -183,7 +222,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                         </div>
 
                         {/* Price */}
-                        <p className="text-sm font-medium">
+                        <p className="text-sm font-medium tabular">
                           {item.quantity > 1 ? (
                             <span>{formattedPrice} × {item.quantity}</span>
                           ) : (
@@ -195,6 +234,59 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                   </div>
                 )
               })}
+
+              {/* In-cart upsell */}
+              {upsellCandidates.length > 0 && (
+                <div className="pt-6 border-t mt-2">
+                  <p className="text-[11px] uppercase tracking-[0.2em] font-semibold mb-1">
+                    Complete the look
+                  </p>
+                  <p className="text-xs text-muted-foreground mb-4">
+                    Add a second piece — automatic 15% off applied with code <span className="font-semibold text-foreground">BUNDLE2</span>.
+                  </p>
+                  <div className="space-y-3">
+                    {upsellCandidates.map((p: any) => {
+                      const v = p.variants?.[0]
+                      const cp = v?.calculated_price
+                      const amount = typeof cp === 'number' ? cp : cp?.calculated_amount
+                      const cur = (typeof cp !== 'number' ? cp?.currency_code : undefined) || currencyCode
+                      return (
+                        <div key={p.id} className="flex items-center gap-3 group">
+                          <Link href={`/products/${p.handle}`} onClick={onClose} className="relative h-16 w-14 flex-shrink-0 overflow-hidden bg-muted">
+                            <Image
+                              src={getProductImage(p.thumbnail, p.id)}
+                              alt={p.title}
+                              fill
+                              sizes="56px"
+                              className="object-cover"
+                            />
+                          </Link>
+                          <div className="flex-1 min-w-0">
+                            <Link href={`/products/${p.handle}`} onClick={onClose} className="block">
+                              <p className="text-sm font-medium truncate group-hover:underline">{p.title}</p>
+                              {amount != null && (
+                                <p className="text-xs text-muted-foreground tabular mt-0.5">
+                                  {formatPrice(amount, cur)}
+                                </p>
+                              )}
+                            </Link>
+                          </div>
+                          {v?.id && (
+                            <button
+                              onClick={() => handleQuickAdd(v.id)}
+                              disabled={isAddingItem}
+                              className="flex-shrink-0 inline-flex items-center justify-center h-9 w-9 border border-foreground hover:bg-foreground hover:text-background transition-colors disabled:opacity-50"
+                              aria-label={`Add ${p.title} to bag`}
+                            >
+                              <PlusSmall className="h-4 w-4" />
+                            </button>
+                          )}
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -213,29 +305,29 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             />
             <div className="space-y-1.5 pt-1">
               <div className="flex justify-between items-baseline">
-                <span className="text-sm uppercase tracking-wide">Subtotal</span>
-                <span className="text-lg font-heading font-semibold">{formattedSubtotal}</span>
+                <span className="text-[11px] uppercase tracking-[0.2em] font-semibold">Subtotal</span>
+                <span className="text-lg font-heading font-semibold tabular">{formattedSubtotal}</span>
               </div>
               {discountTotal > 0 && (
                 <div className="flex justify-between text-sm text-green-700 dark:text-green-500">
                   <span>Discount</span>
-                  <span>-{formatPrice(discountTotal, currencyCode)}</span>
+                  <span className="tabular">-{formatPrice(discountTotal, currencyCode)}</span>
                 </div>
               )}
             </div>
-            <p className="text-xs text-muted-foreground">
-              Shipping and taxes calculated at checkout
+            <p className="text-[11px] text-muted-foreground uppercase tracking-[0.16em]">
+              Shipping & taxes calculated at checkout
             </p>
             <Link
               href="/checkout"
               onClick={onClose}
-              className="block w-full bg-foreground text-background text-center py-3.5 text-sm font-semibold uppercase tracking-wide hover:opacity-90 transition-opacity"
+              className="block w-full bg-foreground text-background text-center py-3.5 text-[12px] font-semibold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity"
             >
-              Checkout
+              Checkout · {formattedSubtotal}
             </Link>
             <button
               onClick={onClose}
-              className="block w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="block w-full text-center text-[11px] text-muted-foreground hover:text-foreground transition-colors uppercase tracking-[0.18em]"
             >
               Continue Shopping
             </button>
