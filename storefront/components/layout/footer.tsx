@@ -47,12 +47,12 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block">
-              <span className="font-heading text-2xl font-semibold">
-                Store
+              <span className="font-heading text-xl font-bold uppercase tracking-[-0.04em]">
+                Essentials
               </span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Curated products crafted with care. Quality you can feel, design you can see.
+              Heavyweight cotton, considered fits, quiet colour. The wardrobe edited to its essentials.
             </p>
           </div>
 
