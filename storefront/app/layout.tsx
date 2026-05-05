@@ -14,16 +14,16 @@ import dynamic from 'next/dynamic'
 
 const CookieConsent = dynamic(() => import('@/components/cookie-consent'))
 
-const heading = Lato({
+const heading = Bricolage_Grotesque({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '500', '600', '700', '800'],
   variable: '--font-heading',
   display: 'swap',
 })
 
 const body = Inter({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-body',
   display: 'swap',
 })
