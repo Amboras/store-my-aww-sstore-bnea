@@ -12,10 +12,8 @@ import { HERO_PLACEHOLDER, LIFESTYLE_PLACEHOLDER } from '@/lib/utils/placeholder
 import ProductCard from '@/components/product/product-card'
 
 export default function HomePage() {
-  const { data: regionData } = useRegion()
-  const regionId = regionData?.id
   const { data: collections, isLoading: collectionsLoading } = useCollections()
-  const { data: products } = useProducts({ limit: 8 }, regionId)
+  const { data: products } = useProducts({ limit: 8 })
   const [newsletterEmail, setNewsletterEmail] = useState('')
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
