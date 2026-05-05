@@ -88,20 +88,26 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-8">
-              <Link href="/products" className="text-sm tracking-wide uppercase link-underline py-1" prefetch={true}>
-                Shop All
+            <nav className="hidden lg:flex items-center gap-8 flex-1 ml-8">
+              <Link href="/products" className="text-[11px] font-medium tracking-[0.2em] uppercase link-underline py-1" prefetch={true}>
+                Shop
               </Link>
-              {collections?.slice(0, 4).map((collection: any) => (
+              <Link href="/products?sort=newest" className="text-[11px] font-medium tracking-[0.2em] uppercase link-underline py-1" prefetch={true}>
+                New Arrivals
+              </Link>
+              {collections?.slice(0, 3).map((collection: any) => (
                 <Link
                   key={collection.id}
                   href={`/collections/${collection.handle}`}
-                  className="text-sm tracking-wide uppercase link-underline py-1"
+                  className="text-[11px] font-medium tracking-[0.2em] uppercase link-underline py-1"
                   prefetch={true}
                 >
                   {collection.title}
                 </Link>
               ))}
+              <Link href="/about" className="text-[11px] font-medium tracking-[0.2em] uppercase link-underline py-1" prefetch={true}>
+                Journal
+              </Link>
             </nav>
 
             {/* Actions */}
