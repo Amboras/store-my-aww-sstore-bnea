@@ -45,7 +45,7 @@ export function getProductImage(thumbnail?: string | null, productId?: string): 
 }
 
 /**
- * Hero/marketing image placeholders
+ * Hero/marketing image placeholders — sourced from the store media library
  */
-export const HERO_PLACEHOLDER = '/media/placeholders/hero.jpg'
-export const LIFESTYLE_PLACEHOLDER = '/media/placeholders/lifestyle.jpg'
+export const HERO_PLACEHOLDER = 'https://ahjviugsxpwzpkyzgrhi.supabase.co/storage/v1/object/public/product-user-files/e93ae416-c547-4625-9167-b9952bb3d8a1%2Fai-banner-1777972416300-0-01KQVPM3WYZ673SEKQJJ76KWKD.png'
+export const LIFESTYLE_PLACEHOLDER = 'https://ahjviugsxpwzpkyzgrhi.supabase.co/storage/v1/object/public/product-user-files/e93ae416-c547-4625-9167-b9952bb3d8a1%2Fai-lifestyle-1777972311063-0-01KQVPGX51MKWNZM81TZHEYJAJ.png'
