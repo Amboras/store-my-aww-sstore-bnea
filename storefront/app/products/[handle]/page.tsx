@@ -10,6 +10,7 @@ import ProductActions from '@/components/product/product-actions'
 import ProductAccordion from '@/components/product/product-accordion'
 import { ProductViewTracker } from '@/components/product/product-view-tracker'
 import ReviewsWidget from '@/components/plugins/reviews/ReviewsWidget'
+import SaleBanner from '@/components/product/sale-banner'
 import { getProductPlaceholder } from '@/lib/utils/placeholder-images'
 import { type VariantExtension } from '@/components/product/product-price'
 
