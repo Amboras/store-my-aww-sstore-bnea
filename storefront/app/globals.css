@@ -4,17 +4,18 @@
 
 @layer base {
   :root {
-    --background: 40 20% 98%;
-    --foreground: 0 0% 10%;
-    --muted: 40 10% 94%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 35 40% 50%;
-    --accent-foreground: 0 0% 100%;
-    --border: 40 10% 88%;
-    --ring: 35 40% 50%;
-    --primary: 0 0% 10%;
-    --primary-foreground: 0 0% 98%;
-    --destructive: 0 72% 51%;
+    /* Warm bone & stone palette — quiet luxury, FOG Essentials inspired */
+    --background: 36 22% 95%;        /* warm bone */
+    --foreground: 30 8% 12%;         /* near-black stone */
+    --muted: 35 16% 90%;             /* oat */
+    --muted-foreground: 30 6% 38%;   /* mid stone */
+    --accent: 30 12% 30%;            /* deep taupe */
+    --accent-foreground: 36 22% 96%;
+    --border: 35 10% 84%;            /* soft sand line */
+    --ring: 30 8% 18%;
+    --primary: 30 8% 12%;
+    --primary-foreground: 36 22% 96%;
+    --destructive: 0 65% 48%;
     --destructive-foreground: 0 0% 98%;
 
     /* Brand colors (dynamically injected from Store.metadata.brand) */
@@ -23,17 +24,17 @@
   }
 
   .dark {
-    --background: 0 0% 6%;
-    --foreground: 40 20% 94%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 55%;
-    --accent: 35 45% 55%;
-    --accent-foreground: 0 0% 100%;
-    --border: 0 0% 16%;
-    --ring: 35 45% 55%;
-    --primary: 40 20% 94%;
-    --primary-foreground: 0 0% 6%;
-    --destructive: 0 72% 51%;
+    --background: 30 6% 8%;
+    --foreground: 36 18% 92%;
+    --muted: 30 5% 14%;
+    --muted-foreground: 35 8% 60%;
+    --accent: 35 14% 65%;
+    --accent-foreground: 30 6% 8%;
+    --border: 30 5% 18%;
+    --ring: 35 14% 65%;
+    --primary: 36 18% 92%;
+    --primary-foreground: 30 6% 8%;
+    --destructive: 0 65% 55%;
     --destructive-foreground: 0 0% 98%;
   }
 }
@@ -45,10 +46,11 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+    font-feature-settings: "ss01", "cv11";
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    @apply font-heading tracking-tight;
   }
 }
 
@@ -72,10 +74,20 @@
     @apply w-full;
   }
 
+  /* Editorial uppercase eyebrow text */
+  .eyebrow {
+    @apply text-[11px] uppercase tracking-[0.22em] text-muted-foreground;
+  }
+
+  /* Numeric tabular */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
   /* Brand color utilities - uses colors from Store.metadata.brand */
   .btn-brand-primary {
     background-color: var(--brand-primary, hsl(var(--primary)));
-    color: white;
+    color: hsl(var(--primary-foreground));
   }
   .btn-brand-primary:hover {
     opacity: 0.9;
@@ -100,6 +112,15 @@
   .bg-brand-secondary {
     background-color: var(--brand-secondary, hsl(var(--accent)));
   }
+
+  /* Marquee */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
 }
 
 /* Smooth scrolling */
@@ -109,7 +130,7 @@ html {
 
 /* Selection color */
 ::selection {
-  @apply bg-accent/20 text-foreground;
+  @apply bg-foreground text-background;
 }
 
 /* Focus styles */
