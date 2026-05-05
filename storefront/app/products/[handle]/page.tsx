@@ -174,12 +174,10 @@ export default async function ProductPage({
           <div className="lg:sticky lg:top-24 lg:self-start space-y-6">
             {/* Title & Subtitle */}
             <div>
-              {product.subtitle && (
-                <p className="text-sm uppercase tracking-[0.15em] text-muted-foreground mb-2">
-                  {product.subtitle}
-                </p>
-              )}
-              <h1 className="text-h2 font-heading font-semibold">{product.title}</h1>
+              <p className="eyebrow mb-3">
+                {product.subtitle || 'The Essentials'}
+              </p>
+              <h1 className="text-h1 font-heading font-semibold leading-[1.05]">{product.title}</h1>
             </div>
 
             <ProductViewTracker
