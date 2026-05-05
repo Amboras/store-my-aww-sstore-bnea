@@ -86,7 +86,7 @@ export default function Footer() {
 
           {/* Company Links */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-widest mb-4">Company</h3>
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.22em] mb-4">Company</h3>
             <ul className="space-y-3">
               {companyLinks.map((link) => (
                 <li key={link.href}>
