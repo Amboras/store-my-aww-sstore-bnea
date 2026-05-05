@@ -194,16 +194,16 @@ export default async function ProductPage({
             {/* Trust Signals */}
             <div className="grid grid-cols-3 gap-4 py-6 border-t">
               <div className="text-center">
-                <Truck className="h-5 w-5 mx-auto mb-1.5" strokeWidth={1.5} />
-                <p className="text-xs text-muted-foreground">Free Shipping</p>
+                <Truck className="h-5 w-5 mx-auto mb-2" strokeWidth={1.5} />
+                <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Free Shipping ₹999+</p>
               </div>
               <div className="text-center">
-                <RotateCcw className="h-5 w-5 mx-auto mb-1.5" strokeWidth={1.5} />
-                <p className="text-xs text-muted-foreground">30-Day Returns</p>
+                <RotateCcw className="h-5 w-5 mx-auto mb-2" strokeWidth={1.5} />
+                <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">30-Day Returns</p>
               </div>
               <div className="text-center">
-                <Shield className="h-5 w-5 mx-auto mb-1.5" strokeWidth={1.5} />
-                <p className="text-xs text-muted-foreground">Secure Checkout</p>
+                <Shield className="h-5 w-5 mx-auto mb-2" strokeWidth={1.5} />
+                <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Secure Checkout</p>
               </div>
             </div>
 
