@@ -110,11 +110,11 @@ export default function Footer() {
                 clearConsent()
                 window.dispatchEvent(new Event('manage-cookies'))
               }}
-              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+              className="text-[11px] text-muted-foreground hover:text-foreground transition-colors uppercase tracking-[0.16em]"
             >
               Manage Cookies
             </button>
-            <span className="text-xs text-muted-foreground">Powered by Amboras</span>
+            <span className="text-[11px] text-muted-foreground uppercase tracking-[0.16em]">Powered by Amboras</span>
           </div>
         </div>
       </div>
