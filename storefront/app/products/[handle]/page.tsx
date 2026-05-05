@@ -99,6 +99,14 @@ export default async function ProductPage({
 
   const variantExtensions = await getVariantExtensions(product.id)
 
+  // Decide whether to show the urgency banner — only when the first variant
+  // has a compare_at_price that is greater than its current price.
+  const firstVariantId = product.variants?.[0]?.id
+  const firstExt = firstVariantId ? variantExtensions[firstVariantId] : null
+  const firstCalc = product.variants?.[0]?.calculated_price
+  const firstCurrent = typeof firstCalc === 'number' ? firstCalc : firstCalc?.calculated_amount
+  const onSale = !!(firstExt?.compare_at_price && firstCurrent && firstExt.compare_at_price > firstCurrent)
+
   const allImages = [
     ...(product.thumbnail ? [{ url: product.thumbnail }] : []),
     ...(product.images || []).filter((img: any) => img.url !== product.thumbnail),
