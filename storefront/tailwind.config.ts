@@ -35,11 +35,11 @@ const config: Config = {
         body: ['var(--font-body)', 'sans-serif'],
       },
       fontSize: {
-        'display': ['4.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
-        'h1': ['3rem', { lineHeight: '1.15', letterSpacing: '-0.02em' }],
-        'h2': ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
-        'h3': ['1.5rem', { lineHeight: '1.3' }],
-        'h4': ['1.25rem', { lineHeight: '1.4' }],
+        'display': ['clamp(3rem, 9vw, 7rem)', { lineHeight: '0.95', letterSpacing: '-0.04em' }],
+        'h1': ['clamp(2.25rem, 5vw, 4rem)', { lineHeight: '1.05', letterSpacing: '-0.03em' }],
+        'h2': ['clamp(1.75rem, 3.5vw, 2.75rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'h3': ['1.5rem', { lineHeight: '1.25', letterSpacing: '-0.01em' }],
+        'h4': ['1.125rem', { lineHeight: '1.4', letterSpacing: '-0.005em' }],
       },
       maxWidth: {
         'content': '1280px',
