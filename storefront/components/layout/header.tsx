@@ -81,9 +81,9 @@ export default function Header() {
             </button>
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
-              <span className="font-heading text-2xl font-semibold tracking-tight">
-                Store
+            <Link href="/" className="flex items-center gap-2 absolute left-1/2 -translate-x-1/2 lg:static lg:left-auto lg:translate-x-0">
+              <span className="font-heading text-xl sm:text-[22px] font-bold tracking-[-0.04em] uppercase">
+                Essentials
               </span>
             </Link>
 
