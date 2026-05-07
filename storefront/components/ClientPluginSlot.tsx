@@ -52,3 +52,5 @@ export function ClientPluginSlot({ name, context = {} }: ClientPluginSlotProps) 
     </>
   )
 }
+
+export default ClientPluginSlot
