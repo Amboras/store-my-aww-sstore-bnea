@@ -11,6 +11,7 @@ import { Toaster } from 'sonner'
 import { ElementPickerListener } from '@/components/element-picker-listener'
 import { ErrorBoundary } from '@/components/error-boundary'
 import dynamic from 'next/dynamic'
+import PluginSlot from '@/components/PluginSlot'
 
 const CookieConsent = dynamic(() => import('@/components/cookie-consent'))
 
@@ -44,6 +45,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${heading.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
+        {/* @ts-expect-error Async Server Component */}
+        <PluginSlot name="head" />
         {/* PostHog cross-origin iframe recording shim — records DOM via rrweb and forwards
             events to the parent window (admin dashboard) for session replay.
             Uses rrweb@2.0.0-alpha.20 (same version proven in ecomcoder production). */}
@@ -85,7 +88,11 @@ export default function RootLayout({
             <ErrorBoundary>
               <AnalyticsProvider>
                 <MetaPixelProvider>
-                  {children}
+                  {/* @ts-expect-error Async Server Component */}
+          <PluginSlot name="rootProviders" />
+          {children}
+          {/* @ts-expect-error Async Server Component */}
+          <PluginSlot name="bodyEnd" />
                 </MetaPixelProvider>
               </AnalyticsProvider>
             </ErrorBoundary>

@@ -8,6 +8,7 @@ import CollectionSection from '@/components/marketing/collection-section'
 import { useCollections } from '@/hooks/use-collections'
 import { trackMetaEvent } from '@/lib/meta-pixel'
 import { HERO_PLACEHOLDER, LIFESTYLE_PLACEHOLDER } from '@/lib/utils/placeholder-images'
+import ClientPluginSlot from '@/components/ClientPluginSlot'
 
 export default function HomePage() {
   const { data: collections, isLoading } = useCollections()
@@ -75,6 +76,10 @@ export default function HomePage() {
         </div>
       </section>
 
+      <ClientPluginSlot name="homeHero" />
+
+      {/* Collections */}      </section>
+
       {/* Collections */}
       {isLoading ? (
         <section className="py-section">
@@ -101,6 +106,8 @@ export default function HomePage() {
           ))}
         </>
       ) : null}
+
+      <ClientPluginSlot name="homeBelowFeatured" />
 
       {/* Editorial / Brand Story Section */}
       <section className="py-section bg-muted/30">

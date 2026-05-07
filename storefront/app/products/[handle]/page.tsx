@@ -12,6 +12,14 @@ import { ProductViewTracker } from '@/components/product/product-view-tracker'
 import ReviewsWidget from '@/components/plugins/reviews/ReviewsWidget'
 import { getProductPlaceholder } from '@/lib/utils/placeholder-images'
 import { type VariantExtension } from '@/components/product/product-price'
+import PluginSlot from '@/components/PluginSlot'
+import ClientPluginSlot from '@/components/ClientPluginSlot'
+// AMBORAS:REVIEWS:IMPORT:reviewstars-pdpaftertitle
+import ReviewStars from '@/components/plugins/reviews/ReviewStars'
+// AMBORAS:REVIEWS:IMPORT:reviewstars-pdpaftertitle:END
+// AMBORAS:REVIEWS:IMPORT:reviewlist-pdpafterdescription
+import ReviewList from '@/components/plugins/reviews/ReviewList'
+// AMBORAS:REVIEWS:IMPORT:reviewlist-pdpafterdescription:END
 
 async function getProduct(handle: string) {
   try {
@@ -110,6 +118,7 @@ export default async function ProductPage({
 
   return (
     <>
+      <ClientPluginSlot name="pdpAnalytics" context={{ productId: product.id, productName: product.title }} />
       {/* Breadcrumbs */}
       <div className="border-b">
         <div className="container-custom py-3">
@@ -169,6 +178,11 @@ export default async function ProductPage({
               )}
               <h1 className="text-h2 font-heading font-semibold">{product.title}</h1>
             </div>
+            {/* @ts-expect-error Async Server Component */}
+            <PluginSlot name="pdpAfterTitle" context={{ productId: product.id }} />
+            {/* AMBORAS:REVIEWS:START id=reviewstars-pdpaftertitle slot=pdpAfterTitle */}
+            <ReviewStars productId={product.id} />
+            {/* AMBORAS:REVIEWS:END */}
 
             <ProductViewTracker
               productId={product.id}
@@ -180,6 +194,7 @@ export default async function ProductPage({
 
             {/* Variant Selector + Price + Add to Cart (client component) */}
             <ProductActions product={product} variantExtensions={variantExtensions} />
+            <ClientPluginSlot name="pdpBelowAddToCart" context={{ productId: product.id }} />
 
             {/* Trust Signals */}
             <div className="grid grid-cols-3 gap-4 py-6 border-t">
@@ -202,6 +217,11 @@ export default async function ProductPage({
               description={product.description}
               details={product.metadata as Record<string, string> | undefined}
             />
+            {/* @ts-expect-error Async Server Component */}
+            <PluginSlot name="pdpAfterDescription" context={{ productId: product.id }} />
+            {/* AMBORAS:REVIEWS:START id=reviewlist-pdpafterdescription slot=pdpAfterDescription */}
+            <ReviewList productId={product.id} />
+            {/* AMBORAS:REVIEWS:END */}
           </div>
         </div>
       </div>
