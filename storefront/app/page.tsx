@@ -78,8 +78,6 @@ export default function HomePage() {
 
       <ClientPluginSlot name="homeHero" />
 
-      {/* Collections */}      </section>
-
       {/* Collections */}
       {isLoading ? (
         <section className="py-section">
