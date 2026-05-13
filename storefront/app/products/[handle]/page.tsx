@@ -14,6 +14,12 @@ import { getProductPlaceholder } from '@/lib/utils/placeholder-images'
 import { type VariantExtension } from '@/components/product/product-price'
 import PluginSlot from '@/components/PluginSlot'
 import ClientPluginSlot from '@/components/ClientPluginSlot'
+// AMBORAS:REVIEWS:IMPORT:reviewstars-pdpaftertitle
+import ReviewStars from '@/components/plugins/reviews/ReviewStars'
+// AMBORAS:REVIEWS:IMPORT:reviewstars-pdpaftertitle:END
+// AMBORAS:REVIEWS:IMPORT:reviewlist-pdpafterdescription
+import ReviewList from '@/components/plugins/reviews/ReviewList'
+// AMBORAS:REVIEWS:IMPORT:reviewlist-pdpafterdescription:END
 
 async function getProduct(handle: string) {
   try {
@@ -174,6 +180,9 @@ export default async function ProductPage({
             </div>
             {/* @ts-expect-error Async Server Component */}
             <PluginSlot name="pdpAfterTitle" context={{ productId: product.id }} />
+            {/* AMBORAS:REVIEWS:START id=reviewstars-pdpaftertitle slot=pdpAfterTitle */}
+            <ReviewStars productId={product.id} />
+            {/* AMBORAS:REVIEWS:END */}
 
             <ProductViewTracker
               productId={product.id}
@@ -210,6 +219,9 @@ export default async function ProductPage({
             />
             {/* @ts-expect-error Async Server Component */}
             <PluginSlot name="pdpAfterDescription" context={{ productId: product.id }} />
+            {/* AMBORAS:REVIEWS:START id=reviewlist-pdpafterdescription slot=pdpAfterDescription */}
+            <ReviewList productId={product.id} />
+            {/* AMBORAS:REVIEWS:END */}
           </div>
         </div>
       </div>
