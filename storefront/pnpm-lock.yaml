@@ -11,9 +11,6 @@ importers:
       '@amboras-dev/klaviyo':
         specifier: 0.2.0
         version: 0.2.0(next@15.5.15(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)
-      '@amboras-dev/reviews':
-        specifier: 0.4.0
-        version: 0.4.0(@tanstack/react-query@5.99.0(react@19.2.5))(react@19.2.5)
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.72.1(react@19.2.5))
@@ -101,12 +98,6 @@ packages:
     resolution: {integrity: sha512-LGGGsepXZcYEqxI1AQFW2W9GeBzJMDytW1pabTTBrkX8vjNfAH+tUVvEy8wQjxVsTB1HHhi0PxY/3g/NaL/4IA==}
     peerDependencies:
       next: '>=14'
-      react: '>=18'
-
-  '@amboras-dev/reviews@0.4.0':
-    resolution: {integrity: sha512-wO4pXgU8O+uUqa6KaucqjpFSJjYcGzgcOAPwpKDqCmQINGSMcl+r2JT/7wcMji/ANW5DSOwAfsuNDcotSQGOCg==}
-    peerDependencies:
-      '@tanstack/react-query': '>=5'
       react: '>=18'
 
   '@emnapi/core@1.9.2':
@@ -2247,11 +2238,6 @@ snapshots:
       next: 15.5.15(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react: 19.2.5
 
-  '@amboras-dev/reviews@0.4.0(@tanstack/react-query@5.99.0(react@19.2.5))(react@19.2.5)':
-    dependencies:
-      '@tanstack/react-query': 5.99.0(react@19.2.5)
-      react: 19.2.5
-
   '@emnapi/core@1.9.2':
     dependencies:
       '@emnapi/wasi-threads': 1.2.1
@@ -3119,7 +3105,7 @@ snapshots:
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.10
       eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.58.2(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1))(eslint@8.57.1)
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.58.2(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.58.2(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.58.2(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.1)
       eslint-plugin-react: 7.37.5(eslint@8.57.1)
       eslint-plugin-react-hooks: 5.2.0(eslint@8.57.1)
@@ -3149,7 +3135,7 @@ snapshots:
       tinyglobby: 0.2.16
       unrs-resolver: 1.11.1
     optionalDependencies:
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.58.2(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.58.2(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.58.2(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -3164,7 +3150,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.58.2(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1):
+  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.58.2(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.58.2(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.9
