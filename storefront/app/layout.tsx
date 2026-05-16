@@ -30,8 +30,8 @@ const body = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Essentials — Heavyweight Cotton, Worn Daily',
-    template: '%s | Essentials',
+    default: 'Not So Essential — Heavyweight Cotton, Worn Daily',
+    template: '%s | Not So Essential',
   },
   description: 'Heavyweight cotton, considered fits, quiet colour. The wardrobe edited to its essentials.',
 }
