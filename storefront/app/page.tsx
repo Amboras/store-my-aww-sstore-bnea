@@ -51,7 +51,7 @@ export default function HomePage() {
                   Built <em className="not-italic font-light italic opacity-80">for men.</em>
                 </h1>
                 <p className="mt-6 max-w-md text-base sm:text-lg leading-relaxed text-background/90">
-                  Heavyweight cotton, considered fits, quiet colour. The wardrobe edited to its essentials.
+                  Heavyweight fabric, considered fits, quiet colour. The wardrobe edited to its essentials.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
