@@ -48,7 +48,7 @@ export default function HomePage() {
                   Volume 01 — The Essentials
                 </p>
                 <h1 className="font-heading text-display font-bold text-balance leading-[0.95]">
-                  Built for every<br className="hidden sm:block" /> day. <em className="not-italic font-light italic opacity-80">Worn for years.</em>
+                  Built <em className="not-italic font-light italic opacity-80">for men.</em>
                 </h1>
                 <p className="mt-6 max-w-md text-base sm:text-lg leading-relaxed text-background/90">
                   Heavyweight cotton, considered fits, quiet colour. The wardrobe edited to its essentials.
