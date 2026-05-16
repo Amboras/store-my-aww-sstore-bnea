@@ -159,7 +159,7 @@ export default function Header() {
             className="absolute inset-y-0 left-0 w-80 max-w-[85vw] bg-background animate-slide-in-right"
           >
             <div className="flex items-center justify-between p-4 border-b">
-              <span className="font-heading text-lg font-bold uppercase tracking-[-0.02em]">Essentials</span>
+              <span className="font-heading text-lg font-bold uppercase tracking-[-0.02em]">Not So Essential</span>
               <button
                 ref={mobileMenuCloseRef}
                 onClick={() => setIsMobileMenuOpen(false)}
