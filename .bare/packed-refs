@@ -1,0 +1,5 @@
+# pack-refs with: peeled fully-peeled sorted 
+42d126c65f10d30e04ecdc4fa3d6a2080c47fdf5 refs/heads/fresh
+42d126c65f10d30e04ecdc4fa3d6a2080c47fdf5 refs/heads/main
+42d126c65f10d30e04ecdc4fa3d6a2080c47fdf5 refs/heads/new-theme
+42d126c65f10d30e04ecdc4fa3d6a2080c47fdf5 refs/heads/test-theme

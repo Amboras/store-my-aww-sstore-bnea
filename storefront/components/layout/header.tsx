@@ -83,7 +83,7 @@ export default function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 absolute left-1/2 -translate-x-1/2 lg:static lg:left-auto lg:translate-x-0">
               <span className="font-heading text-xl sm:text-[22px] font-bold tracking-[-0.04em] uppercase">
-                Essentials
+                Not So Essential
               </span>
             </Link>
 

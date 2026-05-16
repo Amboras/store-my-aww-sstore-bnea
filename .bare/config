@@ -1,0 +1,7 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = true
+	hooksPath = .githooks
+[remote "origin"]
+	url = https://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@github.com/Amboras/store-my-aww-sstore-bnea.git
