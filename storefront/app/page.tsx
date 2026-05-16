@@ -98,10 +98,12 @@ export default function HomePage() {
                   />
                   {/* Floating eyebrow tag inside image (Bento detail) */}
                   <div className="absolute left-5 top-5 sm:left-6 sm:top-6">
-                    <span className="hev-eyebrow bg-background/70 backdrop-blur">
+                    <span className="text-white flex items-center gap-2 rounded-full px-1.5 py-1 text-xs tracking-wide bg-white! backdrop-blur" style={{
+                      color: "white !important"
+                    }}>
                       <span
-                        className="inline-block h-1.5 w-1.5 rounded-full"
-                        style={{ background: 'hsl(var(--accent))' }}
+                        className="inline-block h-1.5 w-1.5 rounded-full text-white!"
+                        style={{ background: 'hsl(var(--accent))', color: "white" }}
                       />
                       Edition 26 · Spring
                     </span>

@@ -229,7 +229,7 @@ export default function Header() {
           className="relative h-full w-full flex flex-col"
         >
           {/* Top bar with close (hamburger → X morph) */}
-          <div className="flex items-center justify-between px-5 pt-5">
+          <div className="flex items-center max-md:hidden justify-between px-5 pt-5">
             <Link
               href="/"
               onClick={() => setIsMobileMenuOpen(false)}
