@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@amboras-dev/klaviyo':
-        specifier: 0.2.0
-        version: 0.2.0(next@15.5.15(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)
+        specifier: 0.2.1
+        version: 0.2.1(next@15.5.15(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)
       '@amboras-dev/reviews':
         specifier: 0.4.0
         version: 0.4.0(@tanstack/react-query@5.99.0(react@19.2.5))(react@19.2.5)
@@ -97,8 +97,8 @@ packages:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
 
-  '@amboras-dev/klaviyo@0.2.0':
-    resolution: {integrity: sha512-LGGGsepXZcYEqxI1AQFW2W9GeBzJMDytW1pabTTBrkX8vjNfAH+tUVvEy8wQjxVsTB1HHhi0PxY/3g/NaL/4IA==}
+  '@amboras-dev/klaviyo@0.2.1':
+    resolution: {integrity: sha512-xERKDHQJUrJQG5IsAEcZiaxsMLFRO9aE42fml/aN3G7RoVgqUMLoYE7souuuyP58AFsy5Nk0hWnHdlgEwY+WmA==}
     peerDependencies:
       next: '>=14'
       react: '>=18'
@@ -2242,7 +2242,7 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@amboras-dev/klaviyo@0.2.0(next@15.5.15(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)':
+  '@amboras-dev/klaviyo@0.2.1(next@15.5.15(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)':
     dependencies:
       next: 15.5.15(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react: 19.2.5
