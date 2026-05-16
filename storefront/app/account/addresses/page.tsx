@@ -82,13 +82,6 @@ export default function AddressesPage() {
       {/* Header */}
       <header className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
         <div>
-          <span className="hev-eyebrow">
-            <span
-              className="inline-block h-1.5 w-1.5 rounded-full"
-              style={{ background: 'hsl(var(--accent))' }}
-            />
-            Saved · shipping
-          </span>
           <h1 className="font-editorial text-foreground mt-4 leading-[0.95] tracking-tight text-[clamp(2rem,4.2vw,3rem)]">
             Your{' '}
             <span className="italic font-normal text-foreground/85">
@@ -117,13 +110,6 @@ export default function AddressesPage() {
         <div className="mb-10 hev-shell rounded-[1.75rem] p-[5px] hev-rise-soft">
           <div className="hev-core rounded-[calc(1.75rem-5px)] p-6 sm:p-8">
             <div className="flex items-center justify-between mb-6">
-              <span className="hev-eyebrow">
-                <span
-                  className="inline-block h-1.5 w-1.5 rounded-full"
-                  style={{ background: 'hsl(var(--accent))' }}
-                />
-                New address
-              </span>
               <button
                 type="button"
                 onClick={() => setShowForm(false)}

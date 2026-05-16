@@ -48,13 +48,6 @@ export default function SearchPage() {
 
         <div className="container-custom">
           <div className="mx-auto max-w-3xl">
-            <span className="hev-eyebrow">
-              <span
-                className="inline-block h-1.5 w-1.5 rounded-full"
-                style={{ background: 'hsl(var(--accent))' }}
-              />
-              Search · the catalogue
-            </span>
 
             <h1 className="font-editorial text-foreground mt-5 leading-[0.95] tracking-tight text-[clamp(2rem,4vw,3rem)]">
               {trimmed ? (

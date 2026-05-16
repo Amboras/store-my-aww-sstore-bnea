@@ -240,17 +240,6 @@ export default function ProductActions({
           )
         })}
 
-      {/* Low-stock eyebrow */}
-      {isLowStock && (
-        <p className="hev-eyebrow inline-flex">
-          <span
-            className="inline-block h-1.5 w-1.5 rounded-full"
-            style={{ background: 'hsl(35 65% 60%)' }}
-          />
-          Only {inventoryQuantity} left
-        </p>
-      )}
-
       {/* Quantity + Add to Bag */}
       <div className="flex flex-wrap items-center gap-3">
         {/* Pill quantity stepper */}

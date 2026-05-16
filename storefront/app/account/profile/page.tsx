@@ -64,13 +64,6 @@ export default function ProfilePage() {
     <AccountLayout>
       {/* Header */}
       <header className="mb-10">
-        <span className="hev-eyebrow">
-          <span
-            className="inline-block h-1.5 w-1.5 rounded-full"
-            style={{ background: 'hsl(var(--accent))' }}
-          />
-          Identity · on file
-        </span>
         <h1 className="font-editorial text-foreground mt-4 leading-[0.95] tracking-tight text-[clamp(2rem,4.2vw,3rem)]">
           Your{' '}
           <span className="italic font-normal text-foreground/85">profile</span>

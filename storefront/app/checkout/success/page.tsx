@@ -165,13 +165,6 @@ function OrderSuccessContent() {
                 />
               </span>
 
-              <span className="hev-eyebrow mt-6 inline-flex">
-                <span
-                  className="inline-block h-1.5 w-1.5 rounded-full"
-                  style={{ background: 'hsl(var(--accent))' }}
-                />
-                Order · confirmed
-              </span>
 
               <h1 className="font-editorial text-foreground mt-5 leading-[0.95] tracking-tight text-[clamp(2.5rem,5.2vw,4rem)]">
                 Thank you,{' '}
@@ -218,13 +211,6 @@ function OrderSuccessContent() {
             {/* What happens next card */}
             <div className="mt-4 hev-shell rounded-[1.75rem] p-[5px]">
               <div className="hev-core rounded-[calc(1.75rem-5px)] p-6 sm:p-8">
-                <span className="hev-eyebrow">
-                  <span
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{ background: 'hsl(var(--accent))' }}
-                  />
-                  What happens next
-                </span>
 
                 <ul className="mt-5 divide-y divide-foreground/[0.07]">
                   <li className="flex items-start gap-4 py-4 first:pt-0">

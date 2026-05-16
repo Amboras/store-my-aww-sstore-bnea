@@ -75,13 +75,6 @@ export default function AboutPage() {
           <Reveal>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
               <div className="lg:col-span-8">
-                <span className="hev-eyebrow">
-                  <span
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{ background: 'hsl(var(--accent))' }}
-                  />
-                  The studio · since 2024
-                </span>
 
                 <h1 className="font-editorial text-foreground mt-5 leading-[0.95] tracking-tight text-[clamp(2.75rem,5.6vw,5rem)]">
                   A small practice,{' '}
@@ -132,7 +125,6 @@ export default function AboutPage() {
               <div className="lg:col-span-7 relative">
                 <div
                   className="hev-shell rounded-[2rem] p-[6px] hev-spring"
-                  style={{ transform: 'rotate(-1.2deg)' }}
                 >
                   <div className="hev-core relative aspect-[5/4] rounded-[calc(2rem-6px)] overflow-hidden">
                     <Image
@@ -151,37 +143,6 @@ export default function AboutPage() {
                       }}
                     />
                     <div className="absolute left-5 top-5 sm:left-6 sm:top-6">
-                      <span className="hev-eyebrow bg-background/70 backdrop-blur">
-                        <span
-                          className="inline-block h-1.5 w-1.5 rounded-full"
-                          style={{ background: 'hsl(var(--accent))' }}
-                        />
-                        Inside the atelier · 03
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floating "sample table" chip */}
-                <div
-                  className="absolute right-2 sm:-right-3 -bottom-5 sm:-bottom-8 max-w-[280px] hev-shell rounded-[1.5rem] p-[5px] hev-spring hidden sm:block"
-                  style={{ transform: 'rotate(2deg)' }}
-                >
-                  <div className="hev-core rounded-[calc(1.5rem-5px)] px-4 py-3 flex items-center gap-3">
-                    <div
-                      className="h-9 w-9 rounded-full shrink-0"
-                      style={{
-                        background:
-                          'conic-gradient(from 140deg, hsl(var(--accent) / 0.85), hsl(35 50% 70% / 0.75), hsl(var(--accent) / 0.45))',
-                      }}
-                    />
-                    <div className="min-w-0">
-                      <p className="text-[10px] uppercase tracking-[0.2em] text-foreground/55 leading-none">
-                        Sample table
-                      </p>
-                      <p className="font-editorial italic text-[15px] leading-tight text-foreground mt-1">
-                        12 in-house, 9 in test
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -189,13 +150,6 @@ export default function AboutPage() {
 
               {/* Pull-quote / manifesto */}
               <div className="lg:col-span-5">
-                <span className="hev-eyebrow">
-                  <span
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{ background: 'hsl(var(--accent))' }}
-                  />
-                  Manifesto
-                </span>
 
                 <p className="font-editorial text-foreground mt-5 leading-[1.05] tracking-tight text-[clamp(1.75rem,3vw,2.5rem)]">
                   &ldquo;Everyday objects should be{' '}
@@ -250,13 +204,6 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
             <div className="lg:col-span-4">
               <Reveal>
-                <span className="hev-eyebrow">
-                  <span
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{ background: 'hsl(var(--accent))' }}
-                  />
-                  Operating principles
-                </span>
 
                 <h2 className="font-editorial mt-5 leading-[0.95] tracking-tight text-[clamp(2rem,3.6vw,3rem)] text-foreground">
                   Four rules,{' '}
@@ -306,13 +253,6 @@ export default function AboutPage() {
           <Reveal>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
               <div className="lg:col-span-5 lg:order-1 order-2">
-                <span className="hev-eyebrow">
-                  <span
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{ background: 'hsl(var(--accent))' }}
-                  />
-                  Sustainability
-                </span>
 
                 <h2 className="font-editorial text-foreground mt-5 leading-[1.0] tracking-tight text-[clamp(2rem,3.6vw,2.75rem)]">
                   Quiet on the{' '}
@@ -346,7 +286,6 @@ export default function AboutPage() {
               <div className="lg:col-span-7 lg:order-2 order-1 relative">
                 <div
                   className="hev-shell rounded-[2rem] p-[6px] hev-spring"
-                  style={{ transform: 'rotate(1deg)' }}
                 >
                   <div className="hev-core relative aspect-[5/4] rounded-[calc(2rem-6px)] overflow-hidden">
                     <Image
@@ -354,7 +293,7 @@ export default function AboutPage() {
                       alt="Season 26 — first look"
                       fill
                       sizes="(max-width: 1024px) 100vw, 56vw"
-                      className="object-cover"
+                      className="object-cover object-top"
                     />
                     <div
                       aria-hidden
@@ -365,13 +304,6 @@ export default function AboutPage() {
                       }}
                     />
                     <div className="absolute right-5 top-5 sm:right-6 sm:top-6">
-                      <span className="hev-eyebrow bg-background/70 backdrop-blur">
-                        <span
-                          className="inline-block h-1.5 w-1.5 rounded-full"
-                          style={{ background: 'hsl(var(--accent))' }}
-                        />
-                        Edition 26 · Frame 02
-                      </span>
                     </div>
                   </div>
                 </div>
@@ -396,13 +328,6 @@ export default function AboutPage() {
         <div className="container-custom">
           <Reveal>
             <div className="mx-auto max-w-3xl text-center">
-              <span className="hev-eyebrow">
-                <span
-                  className="inline-block h-1.5 w-1.5 rounded-full"
-                  style={{ background: 'hsl(var(--accent))' }}
-                />
-                What next
-              </span>
 
               <h2 className="font-editorial mt-5 leading-[0.95] tracking-tight text-[clamp(2.25rem,4.4vw,3.5rem)] text-foreground">
                 Open the season,{' '}

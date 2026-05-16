@@ -68,13 +68,6 @@ export default function ProductsPage() {
           <Reveal>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
               <div className="lg:col-span-8">
-                <span className="hev-eyebrow">
-                  <span
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{ background: 'hsl(var(--accent))' }}
-                  />
-                  Catalogue · {activeCategory ? activeCategory.name : 'all pieces'}
-                </span>
 
                 <h1 className="font-editorial text-foreground mt-5 leading-[0.95] tracking-tight text-[clamp(2.5rem,5.2vw,4.5rem)]">
                   Every piece,{' '}
@@ -183,13 +176,6 @@ export default function ProductsPage() {
                 {/* Category list */}
                 <div>
                   <div className="flex items-center justify-between mb-5">
-                    <span className="hev-eyebrow">
-                      <span
-                        className="inline-block h-1.5 w-1.5 rounded-full"
-                        style={{ background: 'hsl(var(--accent))' }}
-                      />
-                      Category
-                    </span>
                   </div>
 
                   {loadingCategories ? (
@@ -269,13 +255,6 @@ export default function ProductsPage() {
                 {/* Active filter chip */}
                 {selectedCategory && (
                   <div>
-                    <span className="hev-eyebrow mb-3">
-                      <span
-                        className="inline-block h-1.5 w-1.5 rounded-full"
-                        style={{ background: 'hsl(var(--accent))' }}
-                      />
-                      Active
-                    </span>
                     <div className="mt-3 flex flex-wrap gap-2">
                       <button
                         onClick={() => setSelectedCategory('')}

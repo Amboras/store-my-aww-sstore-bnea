@@ -57,15 +57,6 @@ export function PolicyShell({
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
             <div className="lg:col-span-8">
-              {eyebrow && (
-                <span className="hev-eyebrow">
-                  <span
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{ background: 'hsl(var(--accent))' }}
-                  />
-                  {eyebrow}
-                </span>
-              )}
               <h1 className="font-editorial text-foreground mt-5 leading-[0.95] tracking-tight text-[clamp(2.25rem,4.6vw,3.75rem)]">
                 {title}
               </h1>

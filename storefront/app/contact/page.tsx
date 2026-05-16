@@ -109,13 +109,6 @@ export default function ContactPage() {
 
         <div className="container-custom">
           <div className="max-w-2xl">
-            <span className="hev-eyebrow">
-              <span
-                className="inline-block h-1.5 w-1.5 rounded-full"
-                style={{ background: 'hsl(var(--accent))' }}
-              />
-              Write · to the studio
-            </span>
             <h1 className="font-editorial text-foreground mt-5 leading-[0.95] tracking-tight text-[clamp(2.5rem,5.2vw,4.5rem)]">
               Say{' '}
               <span className="italic font-normal text-foreground/85">
@@ -140,13 +133,6 @@ export default function ContactPage() {
             <div className="lg:col-span-7">
               <div className="hev-shell rounded-[1.75rem] p-[5px]">
                 <div className="hev-core rounded-[calc(1.75rem-5px)] p-6 sm:p-8 lg:p-10">
-                  <span className="hev-eyebrow">
-                    <span
-                      className="inline-block h-1.5 w-1.5 rounded-full"
-                      style={{ background: 'hsl(var(--accent))' }}
-                    />
-                    Send a message
-                  </span>
 
                   <form
                     onSubmit={(e) => e.preventDefault()}
@@ -261,13 +247,6 @@ export default function ContactPage() {
             {/* Info column */}
             <aside className="lg:col-span-5">
               <div className="lg:sticky lg:top-28 space-y-6">
-                <span className="hev-eyebrow">
-                  <span
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{ background: 'hsl(var(--accent))' }}
-                  />
-                  Or reach us directly
-                </span>
 
                 {isLoading ? (
                   <div className="hev-shell rounded-[1.5rem] p-[5px]">

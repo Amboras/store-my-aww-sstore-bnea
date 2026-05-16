@@ -78,13 +78,6 @@ export default function FaqPage() {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
             <div className="lg:col-span-8">
-              <span className="hev-eyebrow">
-                <span
-                  className="inline-block h-1.5 w-1.5 rounded-full"
-                  style={{ background: 'hsl(var(--accent))' }}
-                />
-                Support · {String(faqs.length).padStart(2, '0')} questions
-              </span>
               <h1 className="font-editorial text-foreground mt-5 leading-[0.95] tracking-tight text-[clamp(2.25rem,4.8vw,3.75rem)]">
                 Common{' '}
                 <span className="italic font-normal text-foreground/85">

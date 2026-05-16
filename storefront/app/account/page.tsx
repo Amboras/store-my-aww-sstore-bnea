@@ -42,13 +42,6 @@ export default function AccountPage() {
 
       {/* Greeting */}
       <header>
-        <span className="hev-eyebrow">
-          <span
-            className="inline-block h-1.5 w-1.5 rounded-full"
-            style={{ background: 'hsl(var(--accent))' }}
-          />
-          Overview
-        </span>
         <h1 className="font-editorial text-foreground mt-4 leading-[0.95] tracking-tight text-[clamp(2.25rem,4.6vw,3.5rem)]">
           Hello,{' '}
           <span className="italic font-normal text-foreground/85">
@@ -108,13 +101,6 @@ export default function AccountPage() {
       {/* Account details — divider-only, no card boxing */}
       {customer && (
         <section className="mt-14">
-          <span className="hev-eyebrow">
-            <span
-              className="inline-block h-1.5 w-1.5 rounded-full"
-              style={{ background: 'hsl(var(--accent))' }}
-            />
-            Account on file
-          </span>
 
           <dl className="mt-5 grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-foreground/[0.08] border-y border-foreground/[0.08]">
             <div className="py-6 sm:pr-8">

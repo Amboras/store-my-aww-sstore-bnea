@@ -52,13 +52,6 @@ export default function CollectionSection({ collection, alternate }: CollectionS
           >
             <div className={alternate ? 'lg:ml-auto' : ''}>
               {/* Eyebrow */}
-              <span className="hev-eyebrow">
-                <span
-                  className="inline-block h-1.5 w-1.5 rounded-full"
-                  style={{ background: 'hsl(var(--accent))' }}
-                />
-                Collection · {String(collection.handle ?? '').replace(/-/g, ' ')}
-              </span>
 
               {/* Massive editorial serif title */}
               <h2 className="font-editorial text-foreground mt-5 leading-[0.95] tracking-tight text-[clamp(2.5rem,5vw,4.25rem)]">

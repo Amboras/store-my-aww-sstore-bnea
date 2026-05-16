@@ -73,22 +73,12 @@ export default function ProductGallery({
 
           {eyebrow && (
             <div className="absolute left-4 top-4 z-10">
-              <span className="hev-eyebrow bg-background/75 backdrop-blur">
-                <span
-                  className="inline-block h-1.5 w-1.5 rounded-full"
-                  style={{ background: ACCENT_DOT }}
-                />
-                {eyebrow}
-              </span>
             </div>
           )}
 
           {/* Index counter — bottom-right, only with multiple images */}
           {safeImages.length > 1 && (
             <div className="absolute right-4 bottom-4 z-10">
-              <span className="hev-eyebrow bg-background/75 backdrop-blur tabular-nums">
-                {String(activeIdx + 1).padStart(2, '0')} / {String(safeImages.length).padStart(2, '0')}
-              </span>
             </div>
           )}
         </div>

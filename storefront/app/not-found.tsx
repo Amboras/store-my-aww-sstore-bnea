@@ -42,13 +42,6 @@ export default function NotFound() {
             <div className="hev-shell rounded-[2rem] p-[6px]">
               <div className="hev-core rounded-[calc(2rem-6px)] p-10 sm:p-14 text-center">
                 {/* Eyebrow */}
-                <span className="hev-eyebrow">
-                  <span
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{ background: 'hsl(var(--accent))' }}
-                  />
-                  Page · not found
-                </span>
 
                 {/* Massive editorial 404 mark */}
                 <p

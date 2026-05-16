@@ -101,16 +101,7 @@ function StatusBadge({
     neutral: 'hsl(var(--foreground) / 0.45)',
   }
 
-  return (
-    <span className="hev-eyebrow capitalize">
-      <span
-        className="inline-block h-1.5 w-1.5 rounded-full"
-        style={{ background: dotColor[config.tone] }}
-      />
-      <Icon className="h-3 w-3 text-foreground/55" strokeWidth={STROKE} />
-      {String(config.label).replace(/_/g, ' ')}
-    </span>
-  )
+  return null
 }
 
 // ── Hairline timeline — no thick circles, no high-contrast fills ───────────
@@ -294,13 +285,6 @@ function AddressCard({
           <span className="grid place-items-center h-7 w-7 rounded-full bg-foreground/[0.05]">
             <Icon className="h-3.5 w-3.5 text-foreground/70" strokeWidth={STROKE} />
           </span>
-          <span className="hev-eyebrow">
-            <span
-              className="inline-block h-1.5 w-1.5 rounded-full"
-              style={{ background: 'hsl(var(--accent))' }}
-            />
-            {title}
-          </span>
         </div>
         <p className="font-editorial text-foreground text-lg leading-tight">
           {address.first_name}{' '}
@@ -391,13 +375,6 @@ export default function OrderDetailPage({
             <div className="hev-core rounded-[calc(1.75rem-5px)] p-6 sm:p-8">
               <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
                 <div className="min-w-0">
-                  <span className="hev-eyebrow">
-                    <span
-                      className="inline-block h-1.5 w-1.5 rounded-full"
-                      style={{ background: 'hsl(var(--accent))' }}
-                    />
-                    Order · {String(order.status).replace(/_/g, ' ')}
-                  </span>
                   <h1 className="font-editorial text-foreground mt-3 leading-tight tracking-tight text-[clamp(1.75rem,3.4vw,2.5rem)]">
                     #{order.display_id}
                   </h1>
@@ -434,13 +411,6 @@ export default function OrderDetailPage({
               <div className="hev-shell rounded-[1.5rem] p-[5px]">
                 <div className="hev-core rounded-[calc(1.5rem-5px)] p-6 sm:p-7">
                   <div className="flex items-center justify-between mb-5">
-                    <span className="hev-eyebrow">
-                      <span
-                        className="inline-block h-1.5 w-1.5 rounded-full"
-                        style={{ background: 'hsl(var(--accent))' }}
-                      />
-                      Items · {order.items.length}
-                    </span>
                   </div>
                   <ul>
                     {order.items.map((item) => (
@@ -477,13 +447,6 @@ export default function OrderDetailPage({
                         className="h-3.5 w-3.5 text-foreground/70"
                         strokeWidth={STROKE}
                       />
-                    </span>
-                    <span className="hev-eyebrow">
-                      <span
-                        className="inline-block h-1.5 w-1.5 rounded-full"
-                        style={{ background: 'hsl(var(--accent))' }}
-                      />
-                      Shipping &amp; tracking
                     </span>
                   </div>
 
@@ -539,13 +502,6 @@ export default function OrderDetailPage({
               <div className="lg:sticky lg:top-28 space-y-4">
                 <div className="hev-shell rounded-[1.5rem] p-[5px]">
                   <div className="hev-core rounded-[calc(1.5rem-5px)] p-6 sm:p-7">
-                    <span className="hev-eyebrow">
-                      <span
-                        className="inline-block h-1.5 w-1.5 rounded-full"
-                        style={{ background: 'hsl(var(--accent))' }}
-                      />
-                      Receipt
-                    </span>
 
                     <dl className="mt-5 divide-y divide-foreground/[0.07] text-[13.5px]">
                       <div className="flex justify-between py-2.5 first:pt-0">
@@ -602,13 +558,6 @@ export default function OrderDetailPage({
                   order.payment_collections.length > 0 && (
                     <div className="hev-shell rounded-[1.5rem] p-[5px]">
                       <div className="hev-core rounded-[calc(1.5rem-5px)] p-6 sm:p-7">
-                        <span className="hev-eyebrow">
-                          <span
-                            className="inline-block h-1.5 w-1.5 rounded-full"
-                            style={{ background: 'hsl(var(--accent))' }}
-                          />
-                          Payment
-                        </span>
                         {order.payment_collections.map((payment) => (
                           <dl
                             key={payment.id}

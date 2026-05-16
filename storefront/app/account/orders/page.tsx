@@ -26,13 +26,6 @@ export default function OrdersPage() {
       {/* Header */}
       <header className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
         <div>
-          <span className="hev-eyebrow">
-            <span
-              className="inline-block h-1.5 w-1.5 rounded-full"
-              style={{ background: 'hsl(var(--accent))' }}
-            />
-            History · all orders
-          </span>
           <h1 className="font-editorial text-foreground mt-4 leading-[0.95] tracking-tight text-[clamp(2rem,4.2vw,3rem)]">
             Your{' '}
             <span className="italic font-normal text-foreground/85">
@@ -134,13 +127,6 @@ export default function OrdersPage() {
                           </p>
                         </div>
                         <div className="flex items-center gap-3">
-                          <span className="hev-eyebrow capitalize">
-                            <span
-                              className="inline-block h-1.5 w-1.5 rounded-full"
-                              style={{ background: 'hsl(var(--accent))' }}
-                            />
-                            {String(status).replace(/_/g, ' ')}
-                          </span>
                           <span className="font-editorial text-foreground text-xl tabular-nums">
                             {total}
                           </span>

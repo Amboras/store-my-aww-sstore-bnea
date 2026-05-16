@@ -52,10 +52,6 @@ export default function ProductCard({ product, variantExtensions }: ProductCardP
           {/* Sold-out eyebrow chip */}
           {soldOut && (
             <div className="absolute left-3 top-3">
-              <span className="hev-eyebrow bg-background/75 backdrop-blur">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-foreground/50" />
-                Sold out
-              </span>
             </div>
           )}
 

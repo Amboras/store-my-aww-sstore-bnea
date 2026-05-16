@@ -87,15 +87,6 @@ export default function AuthShell({
 
             {/* Editorial header */}
             <header className="text-center mb-8">
-              {eyebrow !== null && eyebrow !== undefined && (
-                <span className="hev-eyebrow">
-                  <span
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{ background: 'hsl(var(--accent))' }}
-                  />
-                  {eyebrow}
-                </span>
-              )}
               <h1 className="font-editorial text-foreground mt-5 leading-[0.95] tracking-tight text-[clamp(2rem,4vw,3rem)]">
                 {title}
               </h1>

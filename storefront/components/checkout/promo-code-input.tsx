@@ -153,28 +153,6 @@ export function PromoCodeInput({
         <ul className="flex flex-wrap gap-2 pt-1">
           {appliedPromoCodes.map((code) => (
             <li key={code}>
-              <span className="hev-eyebrow !pr-1 !py-1 normal-case">
-                <Tag
-                  className="h-3 w-3 text-foreground/55"
-                  strokeWidth={STROKE}
-                />
-                <span className="font-medium tracking-tight text-foreground/90 normal-case text-[11px]">
-                  {code}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => handleRemove(code)}
-                  disabled={isRemovingPromo && removingCode === code}
-                  aria-label={`Remove ${code}`}
-                  className="ml-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-foreground/[0.05] hover:bg-destructive/15 text-foreground/55 hover:text-destructive hev-spring-fast disabled:opacity-40"
-                >
-                  {isRemovingPromo && removingCode === code ? (
-                    <Loader2 className="h-2.5 w-2.5 animate-spin" strokeWidth={STROKE} />
-                  ) : (
-                    <X className="h-2.5 w-2.5" strokeWidth={1.75} />
-                  )}
-                </button>
-              </span>
             </li>
           ))}
         </ul>

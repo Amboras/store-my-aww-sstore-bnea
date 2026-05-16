@@ -96,18 +96,6 @@ export default function HomePage() {
                         'linear-gradient(to top, hsl(0 0% 5% / 0.45), transparent)',
                     }}
                   />
-                  {/* Floating eyebrow tag inside image (Bento detail) */}
-                  <div className="absolute left-5 top-5 sm:left-6 sm:top-6">
-                    <span className="text-white flex items-center gap-2 rounded-full px-1.5 py-1 text-xs tracking-wide bg-white! backdrop-blur" style={{
-                      color: "white !important"
-                    }}>
-                      <span
-                        className="inline-block h-1.5 w-1.5 rounded-full text-white!"
-                        style={{ background: 'hsl(var(--accent))', color: "white" }}
-                      />
-                      Edition 26 · Spring
-                    </span>
-                  </div>
                   {/* Bottom caption */}
                   <div className="absolute left-5 sm:left-6 bottom-5 sm:bottom-6 max-w-xs">
                     <p className="text-white/90 text-[11px] uppercase tracking-[0.22em] font-medium">
@@ -131,13 +119,6 @@ export default function HomePage() {
               <div className="hev-shell rounded-[2rem] p-[6px] h-full">
                 <div className="hev-core rounded-[calc(2rem-6px)] p-7 sm:p-9 lg:p-10 h-full flex flex-col">
                   {/* Eyebrow */}
-                  <span className="hev-eyebrow self-start">
-                    <span
-                      className="inline-block h-1.5 w-1.5 rounded-full animate-pulse"
-                      style={{ background: 'hsl(var(--accent))' }}
-                    />
-                    The Spring Studio
-                  </span>
 
                   {/* Editorial serif headline */}
                   <h1
@@ -354,7 +335,6 @@ export default function HomePage() {
               <div className="relative lg:-ml-2">
                 <div
                   className="hev-shell rounded-[2rem] p-[6px] hev-spring lg:transition-transform"
-                  style={{ transform: 'rotate(-1.2deg)' }}
                 >
                   <div className="hev-core relative aspect-[5/4] sm:aspect-[4/3] lg:aspect-[5/4] rounded-[calc(2rem-6px)] overflow-hidden">
                     <Image
@@ -373,37 +353,6 @@ export default function HomePage() {
                       }}
                     />
                     <div className="absolute left-5 top-5 sm:left-6 sm:top-6">
-                      <span className="hev-eyebrow bg-background/70 backdrop-blur">
-                        <span
-                          className="inline-block h-1.5 w-1.5 rounded-full"
-                          style={{ background: 'hsl(var(--accent))' }}
-                        />
-                        The atelier · 04
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floating credit chip — Bento detail (lifted with slight rotation) */}
-                <div
-                  className="absolute right-2 sm:-right-3 -bottom-5 sm:-bottom-8 max-w-[260px] hev-shell rounded-[1.5rem] p-[5px] hev-spring hidden sm:block"
-                  style={{ transform: 'rotate(2deg)' }}
-                >
-                  <div className="hev-core rounded-[calc(1.5rem-5px)] px-4 py-3 flex items-center gap-3">
-                    <div
-                      className="h-9 w-9 rounded-full shrink-0"
-                      style={{
-                        background:
-                          'conic-gradient(from 120deg, hsl(var(--accent) / 0.8), hsl(35 50% 70% / 0.7), hsl(var(--accent) / 0.4))',
-                      }}
-                    />
-                    <div className="min-w-0">
-                      <p className="text-[10px] uppercase tracking-[0.2em] text-foreground/55 leading-none">
-                        Sound, on shoot
-                      </p>
-                      <p className="font-editorial italic text-[15px] leading-tight text-foreground mt-1">
-                        Hania Rani — Live, 02:17
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -412,13 +361,6 @@ export default function HomePage() {
 
             {/* Copy column */}
             <Reveal delay={120} className="lg:col-span-5">
-              <span className="hev-eyebrow">
-                <span
-                  className="inline-block h-1.5 w-1.5 rounded-full"
-                  style={{ background: 'hsl(var(--accent))' }}
-                />
-                Our practice
-              </span>
 
               <h2 className="font-editorial text-foreground mt-5 leading-[0.95] tracking-tight text-[clamp(2.25rem,4.4vw,3.75rem)]">
                 Crafted slowly,
@@ -489,13 +431,6 @@ export default function HomePage() {
               <div className="hev-core rounded-[calc(2rem-6px)] p-8 sm:p-12 lg:p-14">
                 <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-10">
                   <div className="max-w-lg">
-                    <span className="hev-eyebrow">
-                      <span
-                        className="inline-block h-1.5 w-1.5 rounded-full"
-                        style={{ background: 'hsl(var(--accent))' }}
-                      />
-                      Dispatch · every other Thursday
-                    </span>
 
                     <h2 className="font-editorial mt-5 leading-[0.95] tracking-tight text-[clamp(2rem,3.6vw,3rem)] text-foreground">
                       First look,

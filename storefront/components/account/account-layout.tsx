@@ -128,13 +128,6 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
               <div className="lg:sticky lg:top-28 space-y-8">
                 {/* Identity card */}
                 <div>
-                  <span className="hev-eyebrow">
-                    <span
-                      className="inline-block h-1.5 w-1.5 rounded-full"
-                      style={{ background: 'hsl(var(--accent))' }}
-                    />
-                    Signed in
-                  </span>
                   <p className="font-editorial italic text-foreground text-xl mt-3 leading-tight">
                     {customer.first_name || 'Studio member'}
                   </p>

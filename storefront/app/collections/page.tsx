@@ -71,13 +71,6 @@ export default async function CollectionsPage() {
           <Reveal>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
               <div className="lg:col-span-8">
-                <span className="hev-eyebrow">
-                  <span
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{ background: 'hsl(var(--accent))' }}
-                  />
-                  Browse · collections
-                </span>
 
                 <h1 className="font-editorial text-foreground mt-5 leading-[0.95] tracking-tight text-[clamp(2.5rem,5.2vw,4.5rem)]">
                   Edits,{' '}
@@ -187,13 +180,6 @@ export default async function CollectionsPage() {
                           />
                           {/* Top eyebrow */}
                           <div className="absolute left-4 top-4">
-                            <span className="hev-eyebrow bg-background/75 backdrop-blur">
-                              <span
-                                className="inline-block h-1.5 w-1.5 rounded-full"
-                                style={{ background: 'hsl(var(--accent))' }}
-                              />
-                              {String(i + 1).padStart(2, '0')}
-                            </span>
                           </div>
                           {/* Caption + nested chip */}
                           <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 flex items-end justify-between gap-4">

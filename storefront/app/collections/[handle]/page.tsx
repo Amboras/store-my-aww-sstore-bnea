@@ -73,13 +73,6 @@ export default async function CollectionPage({
           <Reveal>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
               <div className="lg:col-span-8">
-                <span className="hev-eyebrow">
-                  <span
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{ background: 'hsl(var(--accent))' }}
-                  />
-                  Collection · {String(collection.handle).replace(/-/g, ' ')}
-                </span>
 
                 <h1 className="font-editorial text-foreground mt-5 leading-[0.95] tracking-tight text-[clamp(2.75rem,5.6vw,5rem)]">
                   {singleWord ? (

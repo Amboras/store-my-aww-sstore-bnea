@@ -292,13 +292,6 @@ export default function CheckoutPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
             <div className="lg:col-span-8">
-              <span className="hev-eyebrow">
-                <span
-                  className="inline-block h-1.5 w-1.5 rounded-full"
-                  style={{ background: 'hsl(var(--accent))' }}
-                />
-                Secure checkout
-              </span>
               <h1 className="font-editorial text-foreground mt-4 leading-[0.95] tracking-tight text-[clamp(2rem,4.2vw,3rem)]">
                 {step === 'payment' ? (
                   <>
@@ -421,13 +414,6 @@ export default function CheckoutPage() {
                   {/* Contact */}
                   <section className="hev-shell rounded-[1.5rem] p-[5px]">
                     <div className="hev-core rounded-[calc(1.5rem-5px)] p-6 sm:p-8 space-y-5">
-                      <span className="hev-eyebrow">
-                        <span
-                          className="inline-block h-1.5 w-1.5 rounded-full"
-                          style={{ background: 'hsl(var(--accent))' }}
-                        />
-                        Contact
-                      </span>
 
                       <div className="flex flex-col gap-2">
                         <label htmlFor="email" className={labelCls}>
@@ -486,13 +472,6 @@ export default function CheckoutPage() {
                   {/* Shipping address */}
                   <section className="hev-shell rounded-[1.5rem] p-[5px]">
                     <div className="hev-core rounded-[calc(1.5rem-5px)] p-6 sm:p-8 space-y-5">
-                      <span className="hev-eyebrow">
-                        <span
-                          className="inline-block h-1.5 w-1.5 rounded-full"
-                          style={{ background: 'hsl(var(--accent))' }}
-                        />
-                        Shipping address
-                      </span>
 
                       <div className="grid grid-cols-2 gap-3">
                         {checkoutSettings?.full_name === 'full' && (
@@ -760,13 +739,6 @@ export default function CheckoutPage() {
                   {/* Shipping method */}
                   <section className="hev-shell rounded-[1.5rem] p-[5px]">
                     <div className="hev-core rounded-[calc(1.5rem-5px)] p-6 sm:p-8 space-y-5">
-                      <span className="hev-eyebrow">
-                        <span
-                          className="inline-block h-1.5 w-1.5 rounded-full"
-                          style={{ background: 'hsl(var(--accent))' }}
-                        />
-                        Shipping method
-                      </span>
 
                       {loadingShipping ? (
                         <div className="flex items-center justify-center py-6">
@@ -898,13 +870,6 @@ export default function CheckoutPage() {
                   <section className="hev-shell rounded-[1.5rem] p-[5px]">
                     <div className="hev-core rounded-[calc(1.5rem-5px)] p-6 sm:p-7">
                       <div className="flex items-center justify-between mb-4">
-                        <span className="hev-eyebrow">
-                          <span
-                            className="inline-block h-1.5 w-1.5 rounded-full"
-                            style={{ background: 'hsl(var(--accent))' }}
-                          />
-                          Review
-                        </span>
                         <button
                           type="button"
                           onClick={() => setStep('shipping')}
@@ -942,13 +907,6 @@ export default function CheckoutPage() {
                   {/* Payment */}
                   <section className="hev-shell rounded-[1.5rem] p-[5px]">
                     <div className="hev-core rounded-[calc(1.5rem-5px)] p-6 sm:p-8 space-y-5">
-                      <span className="hev-eyebrow">
-                        <span
-                          className="inline-block h-1.5 w-1.5 rounded-full"
-                          style={{ background: 'hsl(var(--accent))' }}
-                        />
-                        Payment
-                      </span>
 
                       {(() => {
                         // Demo fallback
@@ -1092,13 +1050,6 @@ export default function CheckoutPage() {
               <div className="lg:sticky lg:top-28 space-y-4">
                 <div className="hev-shell rounded-[1.5rem] p-[5px]">
                   <div className="hev-core rounded-[calc(1.5rem-5px)] p-6 sm:p-7 space-y-6">
-                    <span className="hev-eyebrow">
-                      <span
-                        className="inline-block h-1.5 w-1.5 rounded-full"
-                        style={{ background: 'hsl(var(--accent))' }}
-                      />
-                      Order summary
-                    </span>
 
                     {!hasItems ? (
                       <div className="text-center py-6">

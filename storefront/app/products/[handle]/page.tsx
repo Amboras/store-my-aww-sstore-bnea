@@ -216,13 +216,6 @@ export default async function ProductPage({
 
               {/* Title block */}
               <header>
-                <span className="hev-eyebrow">
-                  <span
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{ background: 'hsl(var(--accent))' }}
-                  />
-                  Piece · {product.handle}
-                </span>
                 <h1 className="font-editorial text-foreground mt-4 leading-[0.98] tracking-tight text-[clamp(2rem,3.6vw,3rem)]">
                   {product.title}
                 </h1>

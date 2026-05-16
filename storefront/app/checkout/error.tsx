@@ -54,13 +54,6 @@ export default function CheckoutError({
                 />
               </span>
 
-              <span className="hev-eyebrow mt-6 inline-flex">
-                <span
-                  className="inline-block h-1.5 w-1.5 rounded-full"
-                  style={{ background: 'hsl(var(--accent))' }}
-                />
-                Checkout · unavailable
-              </span>
 
               <h1 className="font-editorial text-foreground mt-5 leading-[1.0] tracking-tight text-[clamp(1.75rem,3.2vw,2.5rem)]">
                 We couldn&rsquo;t{' '}
