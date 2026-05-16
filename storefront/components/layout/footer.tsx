@@ -48,7 +48,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block">
               <span className="font-heading text-xl font-bold uppercase tracking-[-0.04em]">
-                Essentials
+                Not So Essential
               </span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xs">
