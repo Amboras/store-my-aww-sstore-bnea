@@ -4,7 +4,6 @@
 
 import type { PluginRegistry } from '../../types/plugins'
 import { KlaviyoProvider as klaviyo_KlaviyoProvider } from "@amboras-dev/klaviyo"
-import { KlaviyoIdentifyOnLogin as klaviyo_KlaviyoIdentifyOnLogin } from "@amboras-dev/klaviyo"
 
 export const PLUGIN_REGISTRY: PluginRegistry = {
   head: [],
@@ -29,6 +28,6 @@ export const PLUGIN_REGISTRY: PluginRegistry = {
   checkoutComplete: [],
   searchAboveResults: [],
   accountOverview: [],
-  account: [{ id: 'klaviyo', Component: klaviyo_KlaviyoIdentifyOnLogin, propsFromContext: ["email","customerId"] }],
+  account: [],
   authSignup: [],
 }

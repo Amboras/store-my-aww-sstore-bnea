@@ -8,10 +8,10 @@
   "/account/reviews/page": "app/account/reviews/page.js",
   "/auth/forgot-password/page": "app/auth/forgot-password/page.js",
   "/auth/login/page": "app/auth/login/page.js",
-  "/auth/reset-password/page": "app/auth/reset-password/page.js",
   "/auth/register/page": "app/auth/register/page.js",
-  "/checkout/page": "app/checkout/page.js",
+  "/auth/reset-password/page": "app/auth/reset-password/page.js",
   "/checkout/success/page": "app/checkout/success/page.js",
+  "/checkout/page": "app/checkout/page.js",
   "/collections/[handle]/page": "app/collections/[handle]/page.js",
   "/contact/page": "app/contact/page.js",
   "/page": "app/page.js",
@@ -19,12 +19,12 @@
   "/review/page": "app/review/page.js",
   "/search/page": "app/search/page.js",
   "/about/page": "app/about/page.js",
-  "/faq/page": "app/faq/page.js",
   "/collections/page": "app/collections/page.js",
+  "/faq/page": "app/faq/page.js",
   "/cookie-policy/page": "app/cookie-policy/page.js",
   "/privacy/page": "app/privacy/page.js",
   "/refund-policy/page": "app/refund-policy/page.js",
-  "/terms/page": "app/terms/page.js",
   "/shipping/page": "app/shipping/page.js",
-  "/products/[handle]/page": "app/products/[handle]/page.js"
+  "/products/[handle]/page": "app/products/[handle]/page.js",
+  "/terms/page": "app/terms/page.js"
 }
