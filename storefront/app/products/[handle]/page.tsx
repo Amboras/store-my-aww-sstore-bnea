@@ -219,7 +219,6 @@ export default async function ProductPage({
               description={product.description}
               details={product.metadata as Record<string, string> | undefined}
             />
-            {/* @ts-expect-error Async Server Component */}
             <PluginSlot name="pdpAfterDescription" context={{ productId: product.id }} />
             {/* AMBORAS:REVIEWS:START id=reviewlist-pdpafterdescription slot=pdpAfterDescription */}
             <ReviewList productId={product.id} />
