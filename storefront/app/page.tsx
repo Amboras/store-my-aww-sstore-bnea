@@ -10,6 +10,7 @@ import { useProducts } from '@/hooks/use-products'
 import { trackMetaEvent } from '@/lib/meta-pixel'
 import { HERO_PLACEHOLDER, LIFESTYLE_PLACEHOLDER } from '@/lib/utils/placeholder-images'
 import ProductCard from '@/components/product/product-card'
+import { ClientPluginSlot } from '@/components/ClientPluginSlot'
 
 export default function HomePage() {
   const { data: collections, isLoading: collectionsLoading } = useCollections()
@@ -179,6 +180,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <ClientPluginSlot name="homeHero" />
+
       {/* Collections */}
       {collectionsLoading ? null : collections && collections.length > 0 ? (
         <>
@@ -191,6 +194,8 @@ export default function HomePage() {
           ))}
         </>
       ) : null}
+
+      <ClientPluginSlot name="homeBelowFeatured" />
 
       {/* Trust / Features Bar */}
       <section className="border-y">

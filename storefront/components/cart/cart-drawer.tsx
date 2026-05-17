@@ -10,6 +10,7 @@ import { getProductImage } from '@/lib/utils/placeholder-images'
 import { formatPrice } from '@/lib/utils/format-price'
 import { PromoCodeInput } from '@/components/checkout/promo-code-input'
 import type { CartLineItem } from '@/types'
+import { ClientPluginSlot } from '@/components/ClientPluginSlot'
 
 interface CartDrawerProps {
   isOpen: boolean
@@ -318,6 +319,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             <p className="text-[11px] text-muted-foreground uppercase tracking-[0.16em]">
               Shipping & taxes calculated at checkout
             </p>
+            <ClientPluginSlot name="cartDrawerFooter" context={{ cartId: cart?.id }} />
             <Link
               href="/checkout"
               onClick={onClose}

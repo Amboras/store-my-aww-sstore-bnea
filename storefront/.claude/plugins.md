@@ -252,3 +252,53 @@ You are uninstalling the @amboras-dev/klaviyo plugin from a Next.js storefront. 
   - Do NOT touch the merchant's actual cart / auth / checkout business logic. Only the lines that import or call into `@amboras-dev/klaviyo`.
 
   When done, summarize what files you edited and what you removed. Note any klaviyo-related code you couldn't safely remove (if any) so the merchant can review.
+
+<!-- AMBORAS:PLUGIN:reviews:START -->
+### Product Reviews
+npm: @amboras-dev/reviews
+
+star ratings and customer reviews for your product
+
+**Components (written to your workspace — edit freely):**
+
+> BEFORE rendering any of these components, open the file with the Read tool and read the exported TypeScript `Props` interface. Required props MUST be passed or the build will fail with a type error at runtime.
+
+`undefined` —
+  Destination:    `undefined`
+  Required props: (none)
+
+
+
+`undefined` —
+  Destination:    `undefined`
+  Required props: (none)
+
+
+
+`undefined` —
+  Destination:    `undefined`
+  Required props: (none)
+
+
+
+**Hooks (from npm package — import, do not copy):**
+
+`useProductReviews` — `useProductReviews(productId: string, options?: { page?: number; perPage?: number })`
+  Returns: { data: { reviews, count, stats: { averageRating, totalCount, distribution } }, isLoading }
+  Import:  `import { useProductReviews } from '@amboras-dev/reviews'`
+
+`useCreateReview` — `useCreateReview()`
+  Returns: { mutate, mutateAsync, isPending } — POST /store/reviews, returns created review + optional discount_code
+  Import:  `import { useCreateReview } from '@amboras-dev/reviews'`
+
+**API endpoints:**
+  GET /store/products/:id/reviews — approved reviews + stats
+  POST /store/reviews — submit review (customer JWT)
+  PUT /store/reviews/:id — edit own review (customer JWT)
+  GET /store/reviews/me — customer's own reviews
+  GET /admin/reviews — list reviews (filterable, paginated)  ← admin auth required
+  GET /admin/reviews/:id — single review detail  ← admin auth required
+  DELETE /admin/reviews/:id — soft delete  ← admin auth required
+  POST /admin/reviews/:id/status — approve / reject / restore  ← admin auth required
+
+<!-- AMBORAS:PLUGIN:reviews:END -->

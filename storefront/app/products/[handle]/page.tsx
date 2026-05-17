@@ -13,6 +13,11 @@ import ReviewsWidget from '@/components/plugins/reviews/ReviewsWidget'
 import SaleBanner from '@/components/product/sale-banner'
 import { getProductPlaceholder } from '@/lib/utils/placeholder-images'
 import { type VariantExtension } from '@/components/product/product-price'
+import { PluginSlot } from '@/components/PluginSlot'
+import { ClientPluginSlot } from '@/components/ClientPluginSlot'
+// AMBORAS:REVIEWS:IMPORT:reviewlist-pdpafterdescription
+import ReviewList from '@/components/plugins/reviews/ReviewList'
+// AMBORAS:REVIEWS:IMPORT:reviewlist-pdpafterdescription:END
 
 async function getProduct(handle: string) {
   try {
@@ -119,6 +124,7 @@ export default async function ProductPage({
 
   return (
     <>
+      <ClientPluginSlot name="pdpAnalytics" context={{ productId: product.id, productName: product.title }} />
       {/* Urgency Sale Banner */}
       {onSale && <SaleBanner endsInHours={36} label="Drop ending soon" />}
 
@@ -190,6 +196,7 @@ export default async function ProductPage({
 
             {/* Variant Selector + Price + Add to Cart (client component) */}
             <ProductActions product={product} variantExtensions={variantExtensions} />
+            <ClientPluginSlot name="pdpBelowAddToCart" context={{ productId: product.id }} />
 
             {/* Trust Signals */}
             <div className="grid grid-cols-3 gap-4 py-6 border-t">
@@ -212,6 +219,11 @@ export default async function ProductPage({
               description={product.description}
               details={product.metadata as Record<string, string> | undefined}
             />
+            {/* @ts-expect-error Async Server Component */}
+            <PluginSlot name="pdpAfterDescription" context={{ productId: product.id }} />
+            {/* AMBORAS:REVIEWS:START id=reviewlist-pdpafterdescription slot=pdpAfterDescription */}
+            <ReviewList productId={product.id} />
+            {/* AMBORAS:REVIEWS:END */}
           </div>
         </div>
       </div>

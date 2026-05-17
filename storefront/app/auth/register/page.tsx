@@ -7,6 +7,7 @@ import { useAuth } from '@/hooks/use-auth'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { trackMetaEvent } from '@/lib/meta-pixel'
+import { ClientPluginSlot } from '@/components/ClientPluginSlot'
 
 export default function RegisterPage() {
   const [firstName, setFirstName] = useState('')
@@ -128,6 +129,7 @@ export default function RegisterPage() {
               'Create Account'
             )}
           </button>
+          <ClientPluginSlot name="authSignup" />
         </form>
 
         <p className="mt-8 text-center text-sm text-muted-foreground">

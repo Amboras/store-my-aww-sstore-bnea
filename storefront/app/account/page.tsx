@@ -4,12 +4,17 @@ import { useAuth } from '@/hooks/use-auth'
 import AccountLayout from '@/components/account/account-layout'
 import Link from 'next/link'
 import { Package, MapPin, User, ArrowRight } from 'lucide-react'
+import { ClientPluginSlot } from '@/components/ClientPluginSlot'
+// AMBORAS:REVIEWS:IMPORT:reviewsnavcard-accountoverview
+import ReviewsNavCard from '@/components/plugins/reviews/ReviewsNavCard'
+// AMBORAS:REVIEWS:IMPORT:reviewsnavcard-accountoverview:END
 
 export default function AccountPage() {
   const { customer } = useAuth()
 
   return (
     <AccountLayout>
+      <ClientPluginSlot name="account" context={{ email: customer?.email, customerId: customer?.id }} />
       <div>
         <h1 className="text-h2 font-heading font-semibold mb-2">
           Hello, {customer?.first_name || 'there'}
@@ -73,6 +78,10 @@ export default function AccountPage() {
           </div>
         )}
       </div>
-    </AccountLayout>
+    <ClientPluginSlot name="accountOverview" />
+    {/* AMBORAS:REVIEWS:START id=reviewsnavcard-accountoverview slot=accountOverview */}
+    <ReviewsNavCard />
+    {/* AMBORAS:REVIEWS:END */}
+      </AccountLayout>
   )
 }

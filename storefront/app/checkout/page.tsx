@@ -18,6 +18,7 @@ import { trackBeginCheckout } from '@/lib/analytics'
 import { trackMetaEvent, toMetaCurrencyValue } from '@/lib/meta-pixel'
 import { formatPrice } from '@/lib/utils/format-price'
 import type { ShippingOption, CartLineItem, LineItem } from '@/types'
+import { ClientPluginSlot } from '@/components/ClientPluginSlot'
 
 const StripePaymentForm = dynamic(
   () => import('@/components/checkout/stripe-payment-form').then(m => m.StripePaymentForm),
@@ -230,6 +231,7 @@ export default function CheckoutPage() {
         <div className="grid lg:grid-cols-[1fr_380px] gap-10 lg:gap-16">
           {/* ============ LEFT COLUMN ============ */}
           <div>
+            <ClientPluginSlot name="checkoutStart" />
             {error && (
               <div role="alert" className="flex items-start gap-3 p-4 mb-6 border border-destructive/30 rounded-sm bg-destructive/5">
                 <AlertCircle className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" />
@@ -565,6 +567,7 @@ export default function CheckoutPage() {
               {/* Order Summary */}
               <div className="border rounded-sm p-6">
                 <h2 className="text-xs uppercase tracking-widest font-semibold mb-6">Order Summary</h2>
+                <ClientPluginSlot name="checkoutOrderSummary" />
                 {!hasItems ? (
                   <div className="text-center py-8">
                     <ShoppingBag className="mx-auto h-8 w-8 text-muted-foreground/40" strokeWidth={1.5} />
