@@ -1,0 +1,13 @@
+   ▲ Next.js 15.5.15 (Turbopack)
+   - Local:        http://localhost:8749
+   - Network:      http://172.19.1.154:8749
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+     ✓ turbopackFileSystemCacheForDev
+
+ ✓ Starting...
+   Using tsconfig file: ./tsconfig.json
+ ✓ Ready in 1257ms
+ ○ Compiling / ...
+[?25h
