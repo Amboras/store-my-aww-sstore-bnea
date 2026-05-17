@@ -22,9 +22,9 @@
   "/collections/page": "app/collections/page.js",
   "/faq/page": "app/faq/page.js",
   "/cookie-policy/page": "app/cookie-policy/page.js",
-  "/privacy/page": "app/privacy/page.js",
   "/refund-policy/page": "app/refund-policy/page.js",
+  "/privacy/page": "app/privacy/page.js",
   "/shipping/page": "app/shipping/page.js",
-  "/products/[handle]/page": "app/products/[handle]/page.js",
-  "/terms/page": "app/terms/page.js"
+  "/terms/page": "app/terms/page.js",
+  "/products/[handle]/page": "app/products/[handle]/page.js"
 }

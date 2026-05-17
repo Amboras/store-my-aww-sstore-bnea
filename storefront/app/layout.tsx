@@ -45,7 +45,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${heading.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
-        {/* @ts-expect-error Async Server Component */}
         <PluginSlot name="head" />
         {/* PostHog cross-origin iframe recording shim — records DOM via rrweb and forwards
             events to the parent window (admin dashboard) for session replay.
