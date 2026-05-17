@@ -87,10 +87,8 @@ export default function RootLayout({
             <ErrorBoundary>
               <AnalyticsProvider>
                 <MetaPixelProvider>
-                  {/* @ts-expect-error Async Server Component */}
           <PluginSlot name="rootProviders" />
           {children}
-          {/* @ts-expect-error Async Server Component */}
           <PluginSlot name="bodyEnd" />
                 </MetaPixelProvider>
               </AnalyticsProvider>
