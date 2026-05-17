@@ -12,6 +12,7 @@ import ProductGallery from '@/components/product/product-gallery'
 import { getProductPlaceholder } from '@/lib/utils/placeholder-images'
 import { type VariantExtension } from '@/components/product/product-price'
 import { PluginSlot } from '@/components/PluginSlot'
+import { ClientPluginSlot } from '@/components/ClientPluginSlot'
 
 const editorial = Cormorant_Garamond({
   subsets: ['latin'],

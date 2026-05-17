@@ -28,15 +28,8 @@ interface ClientPluginSlotProps {
   context?: Record<string, unknown>
 }
 
-/**
- * Client-side slot renderer. Use from client component pages: homepage, cart,
- * checkout, search, account, auth.
- *
- * Shares the ['plugin-configs'] TanStack Query cache key — multiple client slots
- * on the same page deduplicate to a single fetch.
- * Returns null immediately when no plugins are registered (no fetch fired).
- */
-export function ClientPluginSlot({ name, context = {} }: ClientPluginSlotProps) {
+// Exported as BOTH default and named so any import style works.
+function ClientPluginSlot({ name, context = {} }: ClientPluginSlotProps) {
   const entries = PLUGIN_REGISTRY[name] as ComponentEntry[]
 
   const { data: configs = {} } = useQuery({
@@ -67,3 +60,6 @@ export function ClientPluginSlot({ name, context = {} }: ClientPluginSlotProps) 
     </>
   )
 }
+
+export default ClientPluginSlot
+export { ClientPluginSlot }

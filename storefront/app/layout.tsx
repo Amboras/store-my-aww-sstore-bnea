@@ -14,6 +14,7 @@ import dynamic from 'next/dynamic'
 import { PLUGIN_REGISTRY } from './_generated/plugin-registry'
 import { getPluginConfigs } from '@/lib/plugin-config'
 import type { ComponentEntry } from '@/types/plugins'
+import { PluginSlot } from '@/components/PluginSlot'
 
 const CookieConsent = dynamic(() => import('@/components/cookie-consent'))
 
@@ -50,6 +51,8 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${heading.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
+        {/* @ts-expect-error Async Server Component */}
+        <PluginSlot name="head" />
         {/* PostHog cross-origin iframe recording shim — records DOM via rrweb and forwards
             events to the parent window (admin dashboard) for session replay.
             Uses rrweb@2.0.0-alpha.20 (same version proven in ecomcoder production). */}
@@ -90,7 +93,11 @@ export default async function RootLayout({
           <main className="min-h-screen">
             <ErrorBoundary>
               <AnalyticsProvider>
-                {children}
+                {/* @ts-expect-error Async Server Component */}
+          <PluginSlot name="rootProviders" />
+          {children}
+          {/* @ts-expect-error Async Server Component */}
+          <PluginSlot name="bodyEnd" />
               </AnalyticsProvider>
             </ErrorBoundary>
           </main>

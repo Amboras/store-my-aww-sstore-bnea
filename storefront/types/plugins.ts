@@ -7,13 +7,13 @@
  */
 
 export { SLOT_NAMES, type SlotName, type ScriptEntry, type PluginConfigs } from '@amboras-dev/plugin-types'
-import type { SlotName } from '@amboras-dev/plugin-types'
+import type { SlotName, ScriptEntry } from '@amboras-dev/plugin-types'
 
 /** rootProviders slot entry — null-rendering React component that initializes a service. */
 export interface ProviderEntry {
   id: string
   Component: React.ComponentType<any>
-  propsFromConfig?: Record<string, string> // { reactPropName: configKey }
+  propsFromConfig?: Record<string, string>
 }
 
 /** Any visible or invisible component rendered into a slot. */
@@ -23,8 +23,6 @@ export interface ComponentEntry {
   propsFromContext?: string[]
   propsFromConfig?: Record<string, string>
 }
-
-import type { ScriptEntry } from '@amboras-dev/plugin-types'
 
 export type PluginRegistry = {
   head: ScriptEntry[]

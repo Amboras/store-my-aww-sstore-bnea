@@ -4,19 +4,13 @@ import { ErrorBoundary } from '@/components/error-boundary'
 import type { SlotName, ComponentEntry } from '@/types/plugins'
 
 interface PluginSlotProps {
-  name: Exclude<SlotName, 'head' | 'rootProviders'>
+  name: Exclude<SlotName, 'head' | 'rootProviders'> | string
   context?: Record<string, unknown>
 }
 
-/**
- * Async server component slot renderer.
- * Use from server component pages: PDP, collection, search, checkout success, account.
- *
- * Returns null immediately when no plugins are registered for the slot (no config fetch).
- * Each plugin is wrapped in an ErrorBoundary — a broken plugin never crashes the page.
- */
-export async function PluginSlot({ name, context = {} }: PluginSlotProps) {
-  const entries = PLUGIN_REGISTRY[name] as ComponentEntry[]
+// Exported as BOTH default and named so any import style works.
+async function PluginSlot({ name, context = {} }: PluginSlotProps) {
+  const entries = PLUGIN_REGISTRY[name as Exclude<SlotName, 'head' | 'rootProviders'>] as ComponentEntry[]
   if (!entries?.length) return null
 
   const configs = await getPluginConfigs()
@@ -40,3 +34,6 @@ export async function PluginSlot({ name, context = {} }: PluginSlotProps) {
     </>
   )
 }
+
+export default PluginSlot
+export { PluginSlot }
