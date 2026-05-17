@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST='{"app/checkout/page.tsx -> @/components/checkout/stripe-payment-form":{"id":15552,"files":["static/chunks/4195.aab42623dbfd8d69.js","static/chunks/5552.c21f121087f29245.js"]},"components/policy-markdown.tsx -> ./policy-markdown-inner":{"id":17423,"files":["static/chunks/4320.91d5856d8303ae1a.js","static/chunks/7423.f24ddee48fae7695.js"]}}';

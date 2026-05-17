@@ -5,9 +5,6 @@ import AccountLayout from '@/components/account/account-layout'
 import Link from 'next/link'
 import { Package, MapPin, User, ArrowRight } from 'lucide-react'
 import { ClientPluginSlot } from '@/components/ClientPluginSlot'
-// AMBORAS:REVIEWS:IMPORT:reviewsnavcard-accountoverview
-import ReviewsNavCard from '@/components/plugins/reviews/ReviewsNavCard'
-// AMBORAS:REVIEWS:IMPORT:reviewsnavcard-accountoverview:END
 
 export default function AccountPage() {
   const { customer } = useAuth()
@@ -79,9 +76,6 @@ export default function AccountPage() {
         )}
       </div>
     <ClientPluginSlot name="accountOverview" />
-    {/* AMBORAS:REVIEWS:START id=reviewsnavcard-accountoverview slot=accountOverview */}
-    <ReviewsNavCard />
-    {/* AMBORAS:REVIEWS:END */}
       </AccountLayout>
   )
 }

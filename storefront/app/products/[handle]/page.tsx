@@ -15,9 +15,6 @@ import { getProductPlaceholder } from '@/lib/utils/placeholder-images'
 import { type VariantExtension } from '@/components/product/product-price'
 import { PluginSlot } from '@/components/PluginSlot'
 import { ClientPluginSlot } from '@/components/ClientPluginSlot'
-// AMBORAS:REVIEWS:IMPORT:reviewlist-pdpafterdescription
-import ReviewList from '@/components/plugins/reviews/ReviewList'
-// AMBORAS:REVIEWS:IMPORT:reviewlist-pdpafterdescription:END
 
 async function getProduct(handle: string) {
   try {
@@ -220,9 +217,6 @@ export default async function ProductPage({
               details={product.metadata as Record<string, string> | undefined}
             />
             <PluginSlot name="pdpAfterDescription" context={{ productId: product.id }} />
-            {/* AMBORAS:REVIEWS:START id=reviewlist-pdpafterdescription slot=pdpAfterDescription */}
-            <ReviewList productId={product.id} />
-            {/* AMBORAS:REVIEWS:END */}
           </div>
         </div>
       </div>
