@@ -130,7 +130,6 @@ export default function RegisterPage() {
             )}
           </button>
           <ClientPluginSlot name="authSignup" />
-        </form>          </button>
         </form>
 
         <p className="mt-8 text-center text-sm text-muted-foreground">
