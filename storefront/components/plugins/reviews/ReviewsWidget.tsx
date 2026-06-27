@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useProductReviews } from '@amboras-dev/reviews'
+import { useProductReviews } from '@/lib/reviews-stub'
 import { MessageCircle, Loader2 } from 'lucide-react'
 import StarRating from './StarRating'
 

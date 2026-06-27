@@ -17,7 +17,7 @@ import {
   useMyReviews,
   useCreateReview,
   useUpdateReview,
-} from '@amboras-dev/reviews'
+} from '@/lib/reviews-stub'
 import StarRating from './StarRating'
 import { getMedusaClient } from '@/lib/medusa-client'
 

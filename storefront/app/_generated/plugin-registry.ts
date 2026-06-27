@@ -4,7 +4,7 @@
 
 import type { PluginRegistry } from '../../types/plugins'
 import { KlaviyoProvider as klaviyo_KlaviyoProvider } from "@amboras-dev/klaviyo"
-import { KlaviyoIdentifyOnLogin as klaviyo_KlaviyoIdentifyOnLogin } from "@amboras-dev/klaviyo"
+import klaviyo_KlaviyoIdentifyOnLogin from "../../components/plugins/klaviyo/KlaviyoIdentifyOnLogin"
 
 export const PLUGIN_REGISTRY: PluginRegistry = {
   head: [],
