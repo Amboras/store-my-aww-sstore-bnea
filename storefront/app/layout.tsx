@@ -51,7 +51,6 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${heading.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
-        {/* @ts-expect-error Async Server Component */}
         <PluginSlot name="head" />
         {/* PostHog cross-origin iframe recording shim — records DOM via rrweb and forwards
             events to the parent window (admin dashboard) for session replay.
@@ -93,10 +92,8 @@ export default async function RootLayout({
           <main className="min-h-screen">
             <ErrorBoundary>
               <AnalyticsProvider>
-                {/* @ts-expect-error Async Server Component */}
           <PluginSlot name="rootProviders" />
           {children}
-          {/* @ts-expect-error Async Server Component */}
           <PluginSlot name="bodyEnd" />
               </AnalyticsProvider>
             </ErrorBoundary>
